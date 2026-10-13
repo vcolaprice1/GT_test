@@ -25,10 +25,18 @@ git status
 git commit -m "Pubblica Storie di paese Piemonte"
 git remote add origin https://github.com/UTENTE/REPOSITORY.git
 git remote -v
+git credential-manager github login --username UTENTE --web --force
 git push -u origin main
 ```
 
-Se questa cartella ha già un repository Git o un remote `origin`, non ripetere rispettivamente `git init` o `git remote add origin`: controlla prima con `git status` e `git remote -v`. Git Bash può chiedere di autenticarti a GitHub durante il primo `push`.
+Il comando `git credential-manager ... login` apre la pagina di accesso sicura di GitHub nel browser. Accedi lì: la normale password dell'account non è accettata direttamente da `git push`. Se questa cartella ha già un repository Git o un remote `origin`, non ripetere rispettivamente `git init` o `git remote add origin`: controlla prima con `git status` e `git remote -v`.
+
+Se compare `Invalid username or token`, forza nuovamente l'accesso e ripeti il push:
+
+```bash
+git credential-manager github login --username UTENTE --web --force
+git push -u origin main
+```
 
 3. Nel repository GitHub vai su **Settings → Pages**. In **Build and deployment** scegli **Deploy from a branch**, branch `main`, cartella `/(root)`, poi salva. L'indirizzo del sito sarà `https://UTENTE.github.io/REPOSITORY/`.
 
