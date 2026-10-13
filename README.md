@@ -1,0 +1,62 @@
+# Storie di paese Piemonte
+
+Web app statica, in italiano, per consultare una bibliografia Zotero. È pronta per GitHub Pages e non richiede un server applicativo.
+
+## Avvio locale
+
+Dalla cartella del progetto:
+
+```powershell
+python -m http.server 8765
+```
+
+Apri `http://localhost:8765/`. Il catalogo viene caricato da `data/catalogo.json`, quindi aprire direttamente `index.html` come file non basta.
+
+## Pubblicazione su GitHub Pages
+
+1. Su GitHub crea un repository **vuoto**, senza aggiungere README, `.gitignore` o licenza: questi file sono già nella cartella del sito. Prima di renderlo pubblico, verifica di poter distribuire il PDF dimostrativo incluso in `assets/`.
+2. Apri **Git Bash** ed esegui i comandi seguenti. La cartella del sito è dentro un'altra cartella Git: entra esattamente in `storie-di-paese-piemonte`, così non carichi gli altri progetti vicini. Sostituisci `UTENTE` e `REPOSITORY` con i dati del repository appena creato.
+
+```bash
+cd "percorso/storie-di-paese-piemonte"
+git init -b main
+git add .gitignore .nojekyll README.md index.html styles.css app.js assets data tools
+git status
+git commit -m "Pubblica Storie di paese Piemonte"
+git remote add origin https://github.com/UTENTE/REPOSITORY.git
+git remote -v
+git push -u origin main
+```
+
+Se questa cartella ha già un repository Git o un remote `origin`, non ripetere rispettivamente `git init` o `git remote add origin`: controlla prima con `git status` e `git remote -v`. Git Bash può chiedere di autenticarti a GitHub durante il primo `push`.
+
+3. Nel repository GitHub vai su **Settings → Pages**. In **Build and deployment** scegli **Deploy from a branch**, branch `main`, cartella `/(root)`, poi salva. L'indirizzo del sito sarà `https://UTENTE.github.io/REPOSITORY/`.
+
+Per caricare aggiornamenti successivi, sempre dalla cartella del sito in Git Bash:
+
+```bash
+git add .gitignore .nojekyll README.md index.html styles.css app.js assets data tools
+git status
+git commit -m "Aggiorna il sito"
+git push
+```
+
+Riferimenti: [caricare codice locale su GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github) e [configurare la sorgente di GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
+La sezione “Segnalazioni” apre una nuova GitHub Issue quando il sito è su GitHub Pages. Abilita le Issues nelle impostazioni del repository. Fuori da GitHub Pages, il modulo prepara un testo scaricabile e non invia dati a un server.
+
+## Aggiornare la bibliografia
+
+Esporta l'intera biblioteca o collezione Zotero in formato **Zotero RDF**, con **Esporta note** attivo. Poi esegui:
+
+```powershell
+python tools/import_zotero.py "C:/percorso/nuova-esportazione.rdf" --geocode
+```
+
+Lo script conserva in `data/geocodes.json` le coordinate già trovate: alle importazioni successive interroga OpenStreetMap Nominatim solo per nuove località, rispettando una pausa tra le richieste. Controlla l'output per eventuali località irrisolte. Il campo `Location:` o `Località:` in `Extra` indica il luogo trattato; il normale campo Zotero del luogo di pubblicazione resta separato.
+
+Il catalogo corrente, ricavato da `Storie di paese Piemonte.rdf`, contiene 508 pubblicazioni; 208 hanno note Zotero testuali, mostrate in testo leggibile nella scheda e ricercabili. Tutte le 484 pubblicazioni che riportano una località trattata sono rappresentate sulla mappa; le altre 24 non hanno quel metadato nell'esportazione. Il confine del Piemonte è salvato in `data/piemonte.geojson` e proviene da OpenStreetMap/Nominatim. Il PDF in `assets/cfp-inwood.pdf` è un documento dimostrativo associato temporaneamente a tutte le schede. Per PDF specifici, aggiorna il percorso `pdf` in `data/catalogo.json` o estendi lo script di importazione con una mappatura stabile degli allegati.
+
+## Crediti
+
+Dati bibliografici: esportazione Zotero fornita dal progetto. Coordinate: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ottenute tramite Nominatim. Cartografia: OpenStreetMap. Librerie mappa: Leaflet e Leaflet.markercluster.
