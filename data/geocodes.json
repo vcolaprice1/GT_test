@@ -1,0 +1,1672 @@
+{
+  "Acqui Terme|AL": {
+    "lat": 44.674329,
+    "lon": 8.468463,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Albano Vercellese|VC": {
+    "lat": 45.428645,
+    "lon": 8.382575,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alba|CN": {
+    "lat": 44.686594,
+    "lon": 8.031126,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alessandria|AL": {
+    "lat": 44.834953,
+    "lon": 8.74503,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Arborio|VC": {
+    "lat": 45.492122,
+    "lon": 8.373914,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Arquata Scrivia|AL": {
+    "lat": 44.687845,
+    "lon": 8.885338,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Asti|AT": {
+    "lat": 44.826013,
+    "lon": 8.202686,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Avigliana|TO": {
+    "lat": 45.077944,
+    "lon": 7.39839,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Balzola|AL": {
+    "lat": 45.185914,
+    "lon": 8.411928,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Barbania Canavese|TO": {
+    "lat": 45.291252,
+    "lon": 7.630317,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Barge|CN": {
+    "lat": 44.729834,
+    "lon": 7.333347,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bernezzo|CN": {
+    "lat": 44.386481,
+    "lon": 7.419624,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Biandrate|NO": {
+    "lat": 45.445929,
+    "lon": 8.493918,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bianzè|VC": {
+    "lat": 45.308457,
+    "lon": 8.122527,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Biella|BI": {
+    "lat": 45.566954,
+    "lon": 8.086912,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bistagno|AL": {
+    "lat": 44.661518,
+    "lon": 8.369525,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borghetto Borbera|AL": {
+    "lat": 44.730892,
+    "lon": 8.945331,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borgofranco di seso|": {
+    "lat": 45.716668,
+    "lon": 8.276857,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borgomanero|NO": {
+    "lat": 45.69871,
+    "lon": 8.465272,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borgomasino|TO": {
+    "lat": 45.363257,
+    "lon": 7.987523,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borgosesia|VC": {
+    "lat": 45.716668,
+    "lon": 8.276857,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bosco Marengo|AL": {
+    "lat": 44.825551,
+    "lon": 8.677248,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bosconero|TO": {
+    "lat": 45.268652,
+    "lon": 7.763639,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Boves|CN": {
+    "lat": 44.29949,
+    "lon": 7.567702,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Brandizzo|TO": {
+    "lat": 45.176606,
+    "lon": 7.838004,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bra|CN": {
+    "lat": 44.697678,
+    "lon": 7.854271,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bricherasio|TO": {
+    "lat": 44.823409,
+    "lon": 7.305296,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Briga|NO": {
+    "lat": 45.731499,
+    "lon": 8.456097,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Brusasco|TO": {
+    "lat": 45.155492,
+    "lon": 8.060103,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Busca|CN": {
+    "lat": 44.50843,
+    "lon": 7.449917,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "CAselle Torinese|TO": {
+    "lat": 45.17749,
+    "lon": 7.646367,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caltignana|NO": {
+    "lat": 45.526273,
+    "lon": 8.578803,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caluso|TO": {
+    "lat": 45.304955,
+    "lon": 7.895722,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Campertogno|VC": {
+    "lat": 45.798953,
+    "lon": 8.032153,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Canale|CN": {
+    "lat": 44.802133,
+    "lon": 8.009965,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Canavese|TO": {
+    "lat": 45.332023,
+    "lon": 7.72305,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Candelo|BI": {
+    "lat": 45.546208,
+    "lon": 8.112599,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Candia Canavese|TO": {
+    "lat": 45.327755,
+    "lon": 7.885121,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caraglio|CN": {
+    "lat": 44.428441,
+    "lon": 7.443749,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caravino|TO": {
+    "lat": 45.398258,
+    "lon": 7.960322,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Carema|TO": {
+    "lat": 45.583302,
+    "lon": 7.810406,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Carignano|TO": {
+    "lat": 44.906943,
+    "lon": 7.673225,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Carmagnola|TO": {
+    "lat": 44.845586,
+    "lon": 7.719271,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Casale Monferrato|AL": {
+    "lat": 45.136266,
+    "lon": 8.449813,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Casalnoceto|AL": {
+    "lat": 44.913177,
+    "lon": 8.981156,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cassine|AL": {
+    "lat": 44.749948,
+    "lon": 8.527846,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Castagneto Po|TO": {
+    "lat": 45.159251,
+    "lon": 7.889425,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Castellamonte|TO": {
+    "lat": 45.381955,
+    "lon": 7.712117,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Castellar Guidobono|AL": {
+    "lat": 44.905726,
+    "lon": 8.948289,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cavallermaggiore|CN": {
+    "lat": 44.709576,
+    "lon": 7.693031,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cherasco|CN": {
+    "lat": 44.64008,
+    "lon": 7.858802,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Chieri|TO": {
+    "lat": 45.013884,
+    "lon": 7.822354,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Colleretto Giacosa|TO": {
+    "lat": 45.431887,
+    "lon": 7.799592,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cuneo|CN": {
+    "lat": 44.45807,
+    "lon": 7.558137,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cuorgné|TO": {
+    "lat": 45.38972,
+    "lon": 7.649817,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Fossano|CN": {
+    "lat": 44.536828,
+    "lon": 7.662415,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Gattinara|VC": {
+    "lat": 45.614242,
+    "lon": 8.371138,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Grugliasco|TO": {
+    "lat": 45.068046,
+    "lon": 7.57762,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Lenta|VC": {
+    "lat": 45.557466,
+    "lon": 8.384128,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Loranzè|TO": {
+    "lat": 45.441657,
+    "lon": 7.812718,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Miradolo|": {
+    "lat": 44.867222,
+    "lon": 7.298167,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Moncenisio|TO": {
+    "lat": 45.205285,
+    "lon": 6.9825,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Mondovì|CN": {
+    "lat": 44.408665,
+    "lon": 7.80793,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Montanaro|TO": {
+    "lat": 45.233553,
+    "lon": 7.853323,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Parella|TO": {
+    "lat": 45.430657,
+    "lon": 7.793217,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pino|TO": {
+    "lat": 45.039547,
+    "lon": 7.777125,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ponzone|AL": {
+    "lat": 44.588185,
+    "lon": 8.458654,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Revello|CN": {
+    "lat": 44.676475,
+    "lon": 7.420669,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rivoli|TO": {
+    "lat": 45.069715,
+    "lon": 7.517676,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Carlo Canavese|TO": {
+    "lat": 45.255397,
+    "lon": 7.615217,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Giorgio Canavese|TO": {
+    "lat": 45.334155,
+    "lon": 7.796819,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Settimo Torinese|TO": {
+    "lat": 45.137221,
+    "lon": 7.771253,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Torino|TO": {
+    "lat": 45.067755,
+    "lon": 7.682489,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Sessera e Val Strona|": {
+    "lat": 45.666126,
+    "lon": 8.144302,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val d'Ellero e Alta val Tanaro|CN": {
+    "lat": 44.408665,
+    "lon": 7.80793,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val di Susa|TO": {
+    "lat": 45.138381,
+    "lon": 7.049339,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valduggia|VC": {
+    "lat": 45.728369,
+    "lon": 8.329923,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valli di Lanzo|TO": {
+    "lat": 45.27335,
+    "lon": 7.477411,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Varallo|VC": {
+    "lat": 45.814583,
+    "lon": 8.254201,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Vigliano Biellese|BI": {
+    "lat": 45.564475,
+    "lon": 8.104537,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  ", San Raffaele Cimena|TO": {
+    "lat": 45.15331,
+    "lon": 7.853202,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "AL)|": {
+    "lat": 44.834953,
+    "lon": 8.74503,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "AT)|": {
+    "lat": 44.826013,
+    "lon": 8.202686,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "AT|": {
+    "lat": 44.826013,
+    "lon": 8.202686,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Agaro|": {
+    "lat": 46.303738,
+    "lon": 8.305571,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alba|AT": {
+    "lat": 44.686594,
+    "lon": 8.031126,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alice Castello|VC": {
+    "lat": 45.365158,
+    "lon": 8.072925,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alpignano|TO": {
+    "lat": 45.095724,
+    "lon": 7.525403,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alta Langa (CN|": {
+    "lat": 44.424389,
+    "lon": 8.202921,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alta Langa|CN": {
+    "lat": 44.424389,
+    "lon": 8.202921,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alta Val Chisone|TO": {
+    "lat": 44.981486,
+    "lon": 6.93916,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alta Valle Cervo|BI": {
+    "lat": 45.675768,
+    "lon": 7.976669,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Arona|NO": {
+    "lat": 45.759837,
+    "lon": 8.560408,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Barbaresco|CN": {
+    "lat": 44.71927,
+    "lon": 8.076857,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bardassano|TO": {
+    "lat": 45.096716,
+    "lon": 7.841804,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Barengo|NO": {
+    "lat": 45.575076,
+    "lon": 8.513612,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bassignana|AL": {
+    "lat": 45.001634,
+    "lon": 8.734624,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Beinasco|TO": {
+    "lat": 45.022097,
+    "lon": 7.579397,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Belgiarate|VCO": {
+    "lat": 45.838874,
+    "lon": 8.571427,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bellino|CN": {
+    "lat": 44.584682,
+    "lon": 7.01528,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borgo San Dalmazzo|CN": {
+    "lat": 44.326953,
+    "lon": 7.469533,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bossolasco|CN": {
+    "lat": 44.531462,
+    "lon": 8.057353,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Bussolino Gassinese|TO": {
+    "lat": 45.127136,
+    "lon": 7.824384,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "CN)|": {
+    "lat": 44.45807,
+    "lon": 7.558137,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cafasse|TO": {
+    "lat": 45.245961,
+    "lon": 7.517235,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cameri|NO": {
+    "lat": 45.515971,
+    "lon": 8.660722,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Canelli|AT": {
+    "lat": 44.719278,
+    "lon": 8.287138,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cannobio|VCO": {
+    "lat": 46.061808,
+    "lon": 8.697639,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Agaro|VCO": {
+    "lat": 46.303738,
+    "lon": 8.305571,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Alta Langa|CN / AT / AL": {
+    "lat": 44.424389,
+    "lon": 8.202921,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Borgofranco di seso (Borgosesia, VC)|": {
+    "lat": 45.716668,
+    "lon": 8.276857,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Candelo|": {
+    "lat": 45.546208,
+    "lon": 8.112599,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caresana|VC": {
+    "lat": 45.223828,
+    "lon": 8.500782,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cariglio|CN": {
+    "lat": 44.428441,
+    "lon": 7.443749,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caselle Torinese|TO": {
+    "lat": 45.17749,
+    "lon": 7.646367,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Castelnuovo Scrivia|AL": {
+    "lat": 44.980851,
+    "lon": 8.881106,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Castiglione Torinese|TO": {
+    "lat": 45.100824,
+    "lon": 7.797917,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cavallarmaggiore|CN": {
+    "lat": 44.709576,
+    "lon": 7.693031,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Caviglia|BI": {
+    "lat": 44.603252,
+    "lon": 8.516722,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cavour|TO": {
+    "lat": 44.785499,
+    "lon": 7.373841,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Chiaverano|TO": {
+    "lat": 45.49886,
+    "lon": 7.902619,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Chiusa di Pesio|CN": {
+    "lat": 44.274541,
+    "lon": 7.669514,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Chivasso|TO": {
+    "lat": 45.189832,
+    "lon": 7.886028,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cigliano|VC": {
+    "lat": 45.30945,
+    "lon": 8.020979,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cinzano Rivalba|TO": {
+    "lat": 45.09461,
+    "lon": 7.923964,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ciriè|TO": {
+    "lat": 45.220358,
+    "lon": 7.594087,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cirié|TO": {
+    "lat": 45.220358,
+    "lon": 7.594087,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Claviere|TO": {
+    "lat": 44.938799,
+    "lon": 6.750294,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Coazze?|TO": {
+    "lat": 45.052194,
+    "lon": 7.297902,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Coazze|TO": {
+    "lat": 45.052194,
+    "lon": 7.297902,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cocconato|AT": {
+    "lat": 45.08746,
+    "lon": 8.039221,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Coiromonte (Armeno, NO)|": {
+    "lat": 45.833012,
+    "lon": 8.471266,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cossano Belbo|CN": {
+    "lat": 44.660781,
+    "lon": 8.196711,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cossano Canavese|TO": {
+    "lat": 45.387758,
+    "lon": 7.991523,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cossato|BI": {
+    "lat": 45.569912,
+    "lon": 8.179988,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Crescentino|VC": {
+    "lat": 45.190454,
+    "lon": 8.099929,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Crevacuore|BI": {
+    "lat": 45.686868,
+    "lon": 8.246722,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cuceglio|TO": {
+    "lat": 45.359435,
+    "lon": 7.815187,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Cumiana|TO": {
+    "lat": 44.979742,
+    "lon": 7.376717,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Diano d'Alba|CN": {
+    "lat": 44.651555,
+    "lon": 8.026543,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Divignano|NO": {
+    "lat": 45.66237,
+    "lon": 8.601631,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Dogliani|CN": {
+    "lat": 44.532233,
+    "lon": 7.95413,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Dormelletto|NO": {
+    "lat": 45.734505,
+    "lon": 8.572491,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Dronero|CN": {
+    "lat": 44.454157,
+    "lon": 7.331848,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Elva|CN": {
+    "lat": 44.540539,
+    "lon": 7.090459,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Fara Novarese|NO": {
+    "lat": 45.555159,
+    "lon": 8.458941,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ferrere D'Asti|AT": {
+    "lat": 44.875446,
+    "lon": 7.994732,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Fontanetto Po|VC": {
+    "lat": 45.193464,
+    "lon": 8.191925,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Formazza|VCO": {
+    "lat": 46.391919,
+    "lon": 8.390472,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Forno Cnavese|TO": {
+    "lat": 45.347811,
+    "lon": 7.56655,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Frassineto Po|AL": {
+    "lat": 45.133411,
+    "lon": 8.533943,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Fubine|AL": {
+    "lat": 44.962752,
+    "lon": 8.42994,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Galliate|NO": {
+    "lat": 45.478267,
+    "lon": 8.696903,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Gambasca|CN": {
+    "lat": 44.623636,
+    "lon": 7.337932,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Garbagna Novarese|NO": {
+    "lat": 45.392598,
+    "lon": 8.656259,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Garessio|CN": {
+    "lat": 44.198027,
+    "lon": 7.980152,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Gassino Torinese|TO": {
+    "lat": 45.127136,
+    "lon": 7.824384,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Gavi|AL": {
+    "lat": 44.688615,
+    "lon": 8.806139,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Genola|CN": {
+    "lat": 44.588799,
+    "lon": 7.667534,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ghemme|NO": {
+    "lat": 45.598346,
+    "lon": 8.420903,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ghiffa|VCO": {
+    "lat": 45.959122,
+    "lon": 8.619823,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Giaglione|TO": {
+    "lat": 45.140239,
+    "lon": 7.014756,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Giaveno|TO": {
+    "lat": 45.042005,
+    "lon": 7.351994,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Govone|CN": {
+    "lat": 44.793209,
+    "lon": 8.104721,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Gozzano|NO": {
+    "lat": 45.746457,
+    "lon": 8.436067,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Greggio|VC": {
+    "lat": 45.455799,
+    "lon": 8.378855,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Grondona|AL": {
+    "lat": 44.690656,
+    "lon": 8.956707,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Grosso Canavese|TO": {
+    "lat": 45.33465,
+    "lon": 7.591731,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Grosso|TO": {
+    "lat": 45.257502,
+    "lon": 7.557907,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Guarene|CN": {
+    "lat": 44.735323,
+    "lon": 8.036551,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ivea|TO": {
+    "lat": 45.451803,
+    "lon": 7.89325,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ivrea|TO": {
+    "lat": 45.451803,
+    "lon": 7.89325,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "La Baraggia|BI / NO / VC": {
+    "lat": 45.674305,
+    "lon": 8.415119,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "La Morra|CN": {
+    "lat": 44.651962,
+    "lon": 7.936133,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Landiona|NO": {
+    "lat": 45.496352,
+    "lon": 8.423084,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Langhe|AT / CN": {
+    "lat": 44.497852,
+    "lon": 7.97652,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Langhe|CN / AT": {
+    "lat": 44.497852,
+    "lon": 7.97652,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Lanzo Toriese|TO": {
+    "lat": 45.27335,
+    "lon": 7.477411,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Lesegno|CN": {
+    "lat": 44.397032,
+    "lon": 7.968431,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Macugnaga|VCO": {
+    "lat": 45.968379,
+    "lon": 7.967265,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Magliano Alfieri|CN": {
+    "lat": 44.766276,
+    "lon": 8.075029,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Mango|CN": {
+    "lat": 44.680844,
+    "lon": 8.151236,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Manta|CN": {
+    "lat": 44.615152,
+    "lon": 7.488433,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Marene|CN": {
+    "lat": 44.655785,
+    "lon": 7.733401,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Masio|AL": {
+    "lat": 44.866611,
+    "lon": 8.420121,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Masserano|BI": {
+    "lat": 45.594632,
+    "lon": 8.224249,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Mathi|TO": {
+    "lat": 45.267652,
+    "lon": 7.551007,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Meana di Susa|": {
+    "lat": 45.097573,
+    "lon": 7.066221,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Meina|NO": {
+    "lat": 45.788773,
+    "lon": 8.538827,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Melle|CN": {
+    "lat": 44.547634,
+    "lon": 7.309759,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Miagliano|BI": {
+    "lat": 45.613464,
+    "lon": 8.044719,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Migiandone|VCO": {
+    "lat": 45.981629,
+    "lon": 8.380142,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Miradolo (San Secondo di Pinerolo, TO)|": {
+    "lat": 44.873623,
+    "lon": 7.305704,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Mombaruzzo|AT": {
+    "lat": 44.771349,
+    "lon": 8.448909,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Mombello di Torino|TO": {
+    "lat": 45.045749,
+    "lon": 7.920827,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Moncalieri|TO": {
+    "lat": 45.000461,
+    "lon": 7.684754,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Moncalvo|AT": {
+    "lat": 45.050205,
+    "lon": 8.265038,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Monferrato|AL / AT": {
+    "lat": 45.324086,
+    "lon": 8.423028,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Monferrato|AT / AL": {
+    "lat": 45.324086,
+    "lon": 8.423028,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Montafia|AT": {
+    "lat": 44.989289,
+    "lon": 8.024872,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Mornese|AL": {
+    "lat": 44.619165,
+    "lon": 8.762557,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Morozzo|CN": {
+    "lat": 44.428354,
+    "lon": 7.692908,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Nichelino|TO": {
+    "lat": 44.995518,
+    "lon": 7.646618,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Nieve|CN": {
+    "lat": 44.72605,
+    "lon": 8.115186,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Novara|NO": {
+    "lat": 45.58425,
+    "lon": 8.545997,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Novi Liguere|AL": {
+    "lat": 44.76085,
+    "lon": 8.789551,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Novi Ligure|AL": {
+    "lat": 44.76085,
+    "lon": 8.789551,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Nucetto|CN": {
+    "lat": 44.339923,
+    "lon": 8.056262,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Occhieppo Superiore|BI": {
+    "lat": 45.565062,
+    "lon": 8.001319,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Oldenico|VC": {
+    "lat": 45.394544,
+    "lon": 8.389731,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Oleggio|NO": {
+    "lat": 45.597231,
+    "lon": 8.637068,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Oltregiogo|AL": {
+    "lat": 44.76085,
+    "lon": 8.789551,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Omegna|VCO": {
+    "lat": 45.879774,
+    "lon": 8.408022,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Orbassano|TO": {
+    "lat": 45.007263,
+    "lon": 7.536919,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ornavasso|VCO": {
+    "lat": 45.962083,
+    "lon": 8.393624,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Oropa (Biella, BI)|": {
+    "lat": 45.627198,
+    "lon": 7.980604,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Orta San Giulio|NO": {
+    "lat": 45.798081,
+    "lon": 8.406951,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ossola|VCO": {
+    "lat": 46.115622,
+    "lon": 8.383662,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ovada|AL": {
+    "lat": 44.638346,
+    "lon": 8.64525,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ozegna|TO": {
+    "lat": 45.34929,
+    "lon": 7.742524,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pacetto Torinese|TO": {
+    "lat": 45.016883,
+    "lon": 7.749949,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pamparato|CN": {
+    "lat": 44.252051,
+    "lon": 7.915165,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pamparato|TO": {
+    "lat": 44.252051,
+    "lon": 7.915165,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pancalieri|TO": {
+    "lat": 44.833441,
+    "lon": 7.585924,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Parella, Colleretto, Loranzè, Quagliuzzo|TO": {
+    "lat": 45.430657,
+    "lon": 7.793217,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pareto|AL": {
+    "lat": 44.516402,
+    "lon": 8.382161,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Parodi Ligure|AL": {
+    "lat": 44.671689,
+    "lon": 8.760739,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pavone Canavese|TO": {
+    "lat": 45.437559,
+    "lon": 7.851715,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pecetto Torinese|TO": {
+    "lat": 45.016883,
+    "lon": 7.749949,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pezzana|VC": {
+    "lat": 45.25989,
+    "lon": 8.495826,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Piaggio Valmara (Canobbio, VCO)|": {
+    "lat": 46.061808,
+    "lon": 8.697639,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pianezza|TO": {
+    "lat": 45.105847,
+    "lon": 7.543418,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Piasco|CN": {
+    "lat": 44.569731,
+    "lon": 7.448875,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pinerolo, Val Chisone e Germanasca|TO": {
+    "lat": 44.887309,
+    "lon": 7.331945,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pinerolo|TO": {
+    "lat": 44.887309,
+    "lon": 7.331945,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pinero|TO": {
+    "lat": 44.887309,
+    "lon": 7.331945,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Piobesi Torinese|TO": {
+    "lat": 44.932943,
+    "lon": 7.610123,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Piosacco|TO": {
+    "lat": 44.990896,
+    "lon": 7.462935,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Piverone|TO": {
+    "lat": 45.446259,
+    "lon": 8.005722,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pocapaglia|CN": {
+    "lat": 44.726562,
+    "lon": 7.877893,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pollenzo (Bra, CN)|": {
+    "lat": 44.682898,
+    "lon": 7.894882,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pomaretto|TO": {
+    "lat": 44.955983,
+    "lon": 7.182779,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pont Caavese|TO": {
+    "lat": 45.420527,
+    "lon": 7.596855,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Portula|BI": {
+    "lat": 45.675283,
+    "lon": 8.179365,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pragelato|TO": {
+    "lat": 44.981486,
+    "lon": 6.93916,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Pramollo|TO": {
+    "lat": 44.904484,
+    "lon": 7.2114,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Prato Sesia|NO": {
+    "lat": 45.646849,
+    "lon": 8.372939,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Priocca|CN": {
+    "lat": 44.792841,
+    "lon": 8.064116,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Racconigi|CN": {
+    "lat": 44.776978,
+    "lon": 7.661214,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Recetto|NO": {
+    "lat": 45.460364,
+    "lon": 8.435731,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Refrancore|AT": {
+    "lat": 44.936297,
+    "lon": 8.343661,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Ricaldone|AL": {
+    "lat": 44.731935,
+    "lon": 8.467775,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rifreddo|CN": {
+    "lat": 44.654913,
+    "lon": 7.354969,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rimella|VC": {
+    "lat": 45.907548,
+    "lon": 8.181355,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rivara|TO": {
+    "lat": 45.334277,
+    "lon": 7.624531,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rivarolo|TO": {
+    "lat": 45.644621,
+    "lon": 8.176103,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Riviera di San Giulio|NO": {
+    "lat": 45.798325,
+    "lon": 8.405779,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rocca De' Baldi|CN": {
+    "lat": 44.423633,
+    "lon": 7.761136,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Roccavione|CN": {
+    "lat": 44.297041,
+    "lon": 7.471526,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Roddi|CN": {
+    "lat": 44.675807,
+    "lon": 7.96884,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Roero|CN": {
+    "lat": 44.79585,
+    "lon": 7.88694,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Roero|CN / AT": {
+    "lat": 44.79585,
+    "lon": 7.88694,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Romentino|NO": {
+    "lat": 45.462553,
+    "lon": 8.720777,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Roppolo|BI": {
+    "lat": 45.420559,
+    "lon": 8.069724,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rosignano Monferrato|AL": {
+    "lat": 45.079878,
+    "lon": 8.398478,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rossana|CN": {
+    "lat": 44.535794,
+    "lon": 7.428588,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rovasenda|VC": {
+    "lat": 45.538046,
+    "lon": 8.316672,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Rubiana|TO": {
+    "lat": 45.137946,
+    "lon": 7.38483,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sale Delle Langhe|CN": {
+    "lat": 44.394116,
+    "lon": 8.097353,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sale San Giovanni|CN": {
+    "lat": 44.399903,
+    "lon": 8.078891,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Salecchio|VCO": {
+    "lat": 46.213438,
+    "lon": 8.320697,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Saluzzo|CN": {
+    "lat": 44.684313,
+    "lon": 7.494224,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Benigno Canavese|TO": {
+    "lat": 45.223737,
+    "lon": 7.782686,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Giusto Canavese|TO": {
+    "lat": 45.315154,
+    "lon": 7.80912,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Maurizio Canavese|TO": {
+    "lat": 45.216676,
+    "lon": 7.631241,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Pietro Monterosso|CN": {
+    "lat": 44.400712,
+    "lon": 7.310439,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Raffaele Cimena|TO": {
+    "lat": 45.15331,
+    "lon": 7.853202,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "San Salvatore Monferrato|AL": {
+    "lat": 44.994154,
+    "lon": 8.565942,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sant'Albano Stura|CN": {
+    "lat": 44.496392,
+    "lon": 7.71988,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Santena|TO": {
+    "lat": 44.949111,
+    "lon": 7.771811,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Santhià|VC": {
+    "lat": 45.386529,
+    "lon": 8.200575,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Savigliano|CN": {
+    "lat": 44.613813,
+    "lon": 7.641266,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Savigliano|TO": {
+    "lat": 44.613813,
+    "lon": 7.641266,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Scarnafigi|CN": {
+    "lat": 44.692205,
+    "lon": 7.557686,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sciolze|TO": {
+    "lat": 45.094981,
+    "lon": 7.878144,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Serra d'Ivera (Ivrea, TO)|": {
+    "lat": 45.451803,
+    "lon": 7.89325,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Serravalle Scrivia|NO": {
+    "lat": 44.72558,
+    "lon": 8.8547,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Serravalle Sesia|VC": {
+    "lat": 45.685629,
+    "lon": 8.312147,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sezzadio|AL": {
+    "lat": 44.755538,
+    "lon": 8.595577,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sommariva del Bosco|CN": {
+    "lat": 44.774286,
+    "lon": 7.798051,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Sordevolo|BI": {
+    "lat": 45.592618,
+    "lon": 7.945384,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Strambino|TO": {
+    "lat": 45.381457,
+    "lon": 7.88572,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Stresa|VCO": {
+    "lat": 45.883728,
+    "lon": 8.539027,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Strevi|AL": {
+    "lat": 44.698146,
+    "lon": 8.521847,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Suno|NO": {
+    "lat": 45.633369,
+    "lon": 8.54283,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Testona (Moncalieri, TO)|": {
+    "lat": 44.997042,
+    "lon": 7.71033,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Testona|TO": {
+    "lat": 44.997042,
+    "lon": 7.71033,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Tornaco|NO": {
+    "lat": 45.357564,
+    "lon": 8.715939,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Torrazzo|BI": {
+    "lat": 45.49838,
+    "lon": 7.953648,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Torre Pellice|TO": {
+    "lat": 44.821469,
+    "lon": 7.203169,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Tortona|AL": {
+    "lat": 44.89666,
+    "lon": 8.864128,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Trecate|NO": {
+    "lat": 45.431996,
+    "lon": 8.73497,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Tricerro|VC": {
+    "lat": 45.235757,
+    "lon": 8.325333,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Trino|VC": {
+    "lat": 45.19394,
+    "lon": 8.296987,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Trivero|BI": {
+    "lat": 45.688097,
+    "lon": 8.125922,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Tronzano Vercellese|VC": {
+    "lat": 45.321291,
+    "lon": 8.18148,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Borbera|AL": {
+    "lat": 44.671976,
+    "lon": 9.048531,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Chisone|TO": {
+    "lat": 44.892078,
+    "lon": 7.360619,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Germanasca|TO": {
+    "lat": 44.955548,
+    "lon": 7.18229,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Grande di Lanzo|TO": {
+    "lat": 45.366228,
+    "lon": 7.262707,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Maira|CN": {
+    "lat": 44.49889,
+    "lon": 7.168327,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Pellice, Valli d'Angrogna e di Luserna|TO": {
+    "lat": 44.821469,
+    "lon": 7.203169,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Val Sessera e Val Strona (VC-VCO-BI)|": {
+    "lat": 45.666126,
+    "lon": 8.144302,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valdengo|BI": {
+    "lat": 45.567322,
+    "lon": 8.136866,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valenza|AL": {
+    "lat": 45.014787,
+    "lon": 8.645666,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valfenera|AT": {
+    "lat": 44.901746,
+    "lon": 7.964331,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valgioie|TO": {
+    "lat": 45.076236,
+    "lon": 7.340894,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle Cervo|BI": {
+    "lat": 45.611309,
+    "lon": 8.05634,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle Maira|CN": {
+    "lat": 44.49889,
+    "lon": 7.168327,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle Orco|TO": {
+    "lat": 45.432298,
+    "lon": 7.364889,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle Soana|TO": {
+    "lat": 45.474425,
+    "lon": 7.572396,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle Stura di Demonte|CN": {
+    "lat": 44.314618,
+    "lon": 7.329564,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle Vermenagna|CN": {
+    "lat": 44.302342,
+    "lon": 7.538491,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle di Carnino|CN": {
+    "lat": 44.153222,
+    "lon": 7.688965,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Valle di Viù|TO": {
+    "lat": 45.225024,
+    "lon": 7.306381,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Vercelli|VC": {
+    "lat": 45.555383,
+    "lon": 8.346284,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Verrua Savoia|TO": {
+    "lat": 45.156707,
+    "lon": 8.092761,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Veverone|BI": {
+    "lat": 45.425553,
+    "lon": 8.051215,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Vignarello|NO": {
+    "lat": 45.347881,
+    "lon": 8.750473,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Villafalletto|CN": {
+    "lat": 44.559146,
+    "lon": 7.5351,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Villata|VC": {
+    "lat": 45.387762,
+    "lon": 8.432632,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Vische|TO": {
+    "lat": 45.335589,
+    "lon": 7.944818,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "Viverone|BI": {
+    "lat": 45.425553,
+    "lon": 8.051215,
+    "source": "OpenStreetMap / Nominatim"
+  },
+  "|TO": {
+    "lat": 45.060735,
+    "lon": 7.923549,
+    "source": "OpenStreetMap / Nominatim"
+  }
+}
