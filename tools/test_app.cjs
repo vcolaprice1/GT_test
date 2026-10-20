@@ -10,6 +10,7 @@ const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 
 function harness() {
   const elements = new Map();
+  const documentHandlers = {};
   function element(selector) {
     if (!elements.has(selector)) elements.set(selector, {
       value: selector === "#scope" ? "all" : "",
@@ -19,19 +20,51 @@ function harness() {
       querySelector(child) { return element(`${selector} ${child}`); },
       querySelectorAll() { return []; },
       setAttribute(name, value) { this[name] = value; },
+      contains(target) { return target === this || target.parent === this; },
       focus() {},
     });
     return elements.get(selector);
   }
   const context = vm.createContext({
     URL, console, records: structuredClone(records),
-    document: { querySelector: element, createElement: () => ({}), body: { style: {} } },
+    document: { querySelector: element, createElement: () => ({}), body: { style: {} },
+      addEventListener(event, fn) { documentHandlers[event] = fn; } },
   });
   vm.runInContext(source, context);
   vm.runInContext("state.records = records; setupFilters(); renderPdfPage = () => {};", context);
-  return { element, run: (code) => vm.runInContext(code, context) };
+  return { element, documentHandlers, run: (code) => vm.runInContext(code, context) };
 }
 
+test("place menus close outside but stay open for internal selection", () => {
+  const { element, documentHandlers, run } = harness();
+  const publication = element("#publication-filter");
+  const locality = element("#location-filter");
+  publication.open = true;
+  locality.open = true;
+  run("setPlaceFilter('#publication-filter', ['Novara'])");
+  documentHandlers.click({ target: { parent: publication } });
+  assert.equal(publication.open, true);
+  assert.equal(locality.open, false);
+  documentHandlers.click({ target: element("#query") });
+  assert.equal(publication.open, false);
+  assert.equal(run("placeFilters['#publication-filter'].has('Novara')"), true);
+});
+
+test("captions are removed and publication corrections reach filters and years", () => {
+  assert.ok(!html.includes("year-range-help"));
+  assert.ok(!html.includes("Puoi scegliere più luoghi"));
+  assert.ok(!html.includes("Estremi inclusi."));
+  const novara = records.find(r => r.id === "libro-a0b21905b9ab");
+  assert.equal(novara.publicationPlace, "Novara");
+  assert.equal(novara.date, "1977");
+  assert.equal(novara.year, 1977);
+  assert.ok(!records.some(r => r.publicationPlace === "1977" || r.publicationPlace === "S.l." || /Sant'\s+Albano/.test(r.publicationPlace)));
+  const { element, run } = harness();
+  run("setPlaceFilter('#publication-filter', ['Novara'])");
+  element("#year-filter").value = "1977";
+  element("#year-filter").handlers.change();
+  assert.equal(run("state.filtered.some(r => r.id === 'libro-a0b21905b9ab')"), true);
+});
 test("every exact-year option filters the real catalogue and handles string years", () => {
   const { element, run } = harness();
   for (const { value } of element("#year-filter").options) {

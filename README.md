@@ -69,7 +69,9 @@ Il filtro **Anno di edizione** seleziona un anno preciso; in alternativa, **Peri
 
 I nomi delle località vengono normalizzati all'importazione: spazi, maiuscole/minuscole, ordine delle province e un elenco esplicito di refusi in `PLACE_NAMES` nello script. Le etichette cambiate conservano `originalName` e `originalProvince`; il campo `extra` mantiene il testo originale. Le coordinate esistenti sono riutilizzate. Frazioni, valli e aree storiche non vengono fuse con il comune usato come riferimento cartografico; nomi incerti e province discordanti richiedono revisione redazionale, non correzioni automatiche per somiglianza.
 
-CSS, JavaScript e catalogo hanno un parametro di versione comune (`v=20261020-3`) per evitare che il browser combini file di rilasci diversi. A ogni modifica del codice incrementare quel valore in `index.html` e `app.js`; il catalogo viene comunque rivalidato a ogni caricamento. Se dopo il push appare una vecchia scheda, attendere il completamento di GitHub Pages e ricaricare con **Ctrl + F5**.
+I menu geografici si chiudono cliccando all'esterno, senza perdere le selezioni. La normalizzazione corregge inoltre il luogo di edizione `Sant' Albano Stura` e visualizza `S.l.` come `S.l. (senza luogo di edizione)`. Per **Novara : pagine di storia**, l'RDF fornito contiene luogo e data invertiti: l'importazione corregge la scheda in **Novara, 1977**, conservando `originalPublicationPlace`, `originalDate` e l'identificativo della scheda. Le correzioni non modificano il file RDF originale.
+
+CSS, JavaScript e catalogo hanno un parametro di versione comune (`v=20261020-4`) per evitare che il browser combini file di rilasci diversi. A ogni modifica del codice incrementare quel valore in `index.html` e `app.js`; il catalogo viene comunque rivalidato a ogni caricamento. Se dopo il push appare una vecchia scheda, attendere il completamento di GitHub Pages e ricaricare con **Ctrl + F5**.
 
 Test di regressione, dalla cartella del sito:
 
