@@ -5,6 +5,18 @@ const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "
 const unique = (values) => [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
 const selectors = ["#query", "#scope", "#author-filter", "#publisher-filter", "#title-filter", "#publication-filter", "#location-filter", "#year-filter", "#period-filter"];
 
+function publicationYears(record) {
+  const date = String(record.date || record.year || "");
+  const range = date.match(/\b((?:1[5-9]|20)\d{2})\s*[-–—/]\s*((?:1[5-9]|20)\d{2})\b/);
+  if (range && Number(range[2]) >= Number(range[1])) {
+    return Array.from({ length: Number(range[2]) - Number(range[1]) + 1 }, (_, i) => Number(range[1]) + i);
+  }
+  const years = date.match(/\b(?:1[5-9]|20)\d{2}\b/g);
+  if (years) return [...new Set(years.map(Number))];
+  const fallback = String(record.year ?? "").match(/^(?:1[5-9]|20)\d{2}$/);
+  return fallback ? [Number(fallback[0])] : [];
+}
+
 function fillSelect(selector, values) {
   const select = $(selector);
   for (const value of unique(values)) {
@@ -21,8 +33,8 @@ function setupFilters() {
   fillSelect("#title-filter", state.records.map((r) => r.title));
   fillSelect("#publication-filter", state.records.map((r) => r.publicationPlace));
   fillSelect("#location-filter", state.records.flatMap((r) => r.locations.map((p) => p.name)));
-  fillSelect("#year-filter", state.records.filter((r) => r.year).map((r) => String(r.year)));
-  fillSelect("#period-filter", state.records.map((r) => r.year && `${Math.floor(r.year / 10) * 10}–${Math.floor(r.year / 10) * 10 + 9}`));
+  fillSelect("#year-filter", state.records.flatMap((r) => publicationYears(r).map(String)));
+  fillSelect("#period-filter", state.records.flatMap((r) => publicationYears(r).map((year) => `${Math.floor(year / 10) * 10}–${Math.floor(year / 10) * 10 + 9}`)));
   for (const selector of selectors) $(selector).addEventListener(selector === "#query" ? "input" : "change", () => { state.visible = 12; applyFilters(); });
   $("#reset-filters").addEventListener("click", () => {
     for (const selector of selectors) $(selector).value = "";
@@ -39,7 +51,7 @@ function searchText(record, scope) {
     publisher: record.publisher,
     publicationPlace: record.publicationPlace,
     locations: record.locations.map((p) => `${p.name} ${p.province}`).join(" "),
-    year: record.date,
+    year: [...publicationYears(record), record.date].filter(Boolean).join(" "),
     notes: record.notes.join(" "),
   };
   return scope === "all" ? Object.values(fields).join(" ") : fields[scope] || "";
@@ -47,6 +59,7 @@ function searchText(record, scope) {
 
 function matches(record) {
   const query = norm($("#query").value);
+  if (query && $("#scope").value === "year" && /^\d{4}$/.test(query) && !publicationYears(record).includes(Number(query))) return false;
   if (query && !norm(searchText(record, $("#scope").value)).includes(query)) return false;
   const author = $("#author-filter").value;
   if (author && ![...record.authors, ...record.editors].includes(author)) return false;
@@ -54,17 +67,17 @@ function matches(record) {
   if ($("#title-filter").value && record.title !== $("#title-filter").value) return false;
   if ($("#publication-filter").value && record.publicationPlace !== $("#publication-filter").value) return false;
   if ($("#location-filter").value && !record.locations.some((p) => p.name === $("#location-filter").value)) return false;
-  if ($("#year-filter").value && record.year !== Number($("#year-filter").value)) return false;
+  if ($("#year-filter").value && !publicationYears(record).includes(Number($("#year-filter").value))) return false;
   if ($("#period-filter").value) {
     const start = Number($("#period-filter").value.slice(0, 4));
-    if (!record.year || record.year < start || record.year > start + 9) return false;
+    if (!publicationYears(record).some((year) => year >= start && year <= start + 9)) return false;
   }
   return true;
 }
 
 function card(record, index) {
   const person = (label, people) => people?.length ? `<div class="card-person"><span class="card-label">${label}</span><span>${esc(people.join(", "))}</span></div>` : "";
-  const published = record.year || record.date || "s.d.";
+  const published = record.date || record.year || "s.d.";
   const place = record.locations.map((p) => p.name).join(", ") || "Non indicata";
   return `<article class="result-card">
     <div class="card-top"><span class="card-number">SCHEDA ${String(index + 1).padStart(3, "0")}</span></div>
@@ -288,7 +301,7 @@ function setupSuggestions() {
 function renderStats() {
   const records = state.records;
   const places = unique(records.flatMap((r) => r.locations.map((p) => `${norm(p.name)}|${p.province}`)));
-  const years = records.map((r) => r.year).filter(Boolean).sort((a, b) => a - b);
+  const years = records.flatMap(publicationYears).sort((a, b) => a - b);
   $("#stat-records").textContent = records.length;
   $("#stat-places").textContent = places.length;
   $("#stat-publishers").textContent = unique(records.map((r) => r.publisher)).length;
@@ -300,7 +313,8 @@ async function start() {
   setupSuggestions();
   $("#more-results").addEventListener("click", () => { state.visible += 12; renderResults(); });
   try {
-    const response = await fetch("data/catalogo.json");
+    // Revalidate the catalogue; a fresh script must not use a stale export.
+    const response = await fetch("data/catalogo.json?v=20261020-2", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.records = await response.json();
     state.records.sort((a, b) => a.title.localeCompare(b.title, "it", { sensitivity: "base" }));

@@ -709,8 +709,10 @@
     ],
     "locations": [
       {
-        "name": "Rocca De' Baldi",
+        "name": "Rocca de' Baldi",
         "province": "CN",
+        "originalName": "Rocca De' Baldi",
+        "originalProvince": "CN",
         "lat": 44.423633,
         "lon": 7.761136
       }
@@ -922,8 +924,10 @@
     ],
     "locations": [
       {
-        "name": "Ferrere D'Asti",
+        "name": "Ferrere d'Asti",
         "province": "AT",
+        "originalName": "Ferrere D'Asti",
+        "originalProvince": "AT",
         "lat": 44.875446,
         "lon": 7.994732
       }
@@ -1106,8 +1110,10 @@
     ],
     "locations": [
       {
-        "name": "Novi Liguere",
+        "name": "Novi Ligure",
         "province": "AL",
+        "originalName": "Novi Liguere",
+        "originalProvince": "AL",
         "lat": 44.76085,
         "lon": 8.789551
       }
@@ -2012,8 +2018,10 @@
     ],
     "locations": [
       {
-        "name": "Belgiarate",
+        "name": "Belgirate",
         "province": "VCO",
+        "originalName": "Belgiarate",
+        "originalProvince": "VCO",
         "lat": 45.838874,
         "lon": 8.571427
       }
@@ -2042,8 +2050,10 @@
     ],
     "locations": [
       {
-        "name": "Forno Cnavese",
+        "name": "Forno Canavese",
         "province": "TO",
+        "originalName": "Forno Cnavese",
+        "originalProvince": "TO",
         "lat": 45.347811,
         "lon": 7.56655
       }
@@ -2384,8 +2394,10 @@
         "lon": 8.078891
       },
       {
-        "name": "Sale Delle Langhe",
+        "name": "Sale delle Langhe",
         "province": "CN",
+        "originalName": "Sale Delle Langhe",
+        "originalProvince": "CN",
         "lat": 44.394116,
         "lon": 8.097353
       }
@@ -2983,7 +2995,9 @@
     "locations": [
       {
         "name": "Candelo",
-        "province": "",
+        "province": "BI",
+        "originalName": "Candelo",
+        "originalProvince": "",
         "lat": 45.546208,
         "lon": 8.112599
       }
@@ -3638,8 +3652,10 @@
     ],
     "locations": [
       {
-        "name": "Cavallarmaggiore",
+        "name": "Cavallermaggiore",
         "province": "CN",
+        "originalName": "Cavallarmaggiore",
+        "originalProvince": "CN",
         "lat": 44.709576,
         "lon": 7.693031
       }
@@ -4353,8 +4369,10 @@
     ],
     "locations": [
       {
-        "name": "Caltignana",
+        "name": "Caltignaga",
         "province": "NO",
+        "originalName": "Caltignana",
+        "originalProvince": "NO",
         "lat": 45.526273,
         "lon": 8.578803
       }
@@ -4841,8 +4859,10 @@
     ],
     "locations": [
       {
-        "name": "Piosacco",
+        "name": "Piossasco",
         "province": "TO",
+        "originalName": "Piosacco",
+        "originalProvince": "TO",
         "lat": 44.990896,
         "lon": 7.462935
       }
@@ -5029,8 +5049,10 @@
     ],
     "locations": [
       {
-        "name": "Ivea",
+        "name": "Ivrea",
         "province": "TO",
+        "originalName": "Ivea",
+        "originalProvince": "TO",
         "lat": 45.451803,
         "lon": 7.89325
       }
@@ -5221,8 +5243,10 @@
     ],
     "locations": [
       {
-        "name": "Cirié",
+        "name": "Ciriè",
         "province": "TO",
+        "originalName": "Cirié",
+        "originalProvince": "TO",
         "lat": 45.220358,
         "lon": 7.594087
       }
@@ -6275,8 +6299,10 @@
     ],
     "locations": [
       {
-        "name": "Pacetto Torinese",
+        "name": "Pecetto Torinese",
         "province": "TO",
+        "originalName": "Pacetto Torinese",
+        "originalProvince": "TO",
         "lat": 45.016883,
         "lon": 7.749949
       }
@@ -7094,7 +7120,9 @@
       },
       {
         "name": "Monferrato",
-        "province": "AT / AL",
+        "province": "AL / AT",
+        "originalName": "Monferrato",
+        "originalProvince": "AT / AL",
         "lat": 45.324086,
         "lon": 8.423028
       }
@@ -7124,8 +7152,10 @@
     ],
     "locations": [
       {
-        "name": "Serra d'Ivera (Ivrea, TO)",
+        "name": "Serra d'Ivrea (Ivrea, TO)",
         "province": "",
+        "originalName": "Serra d'Ivera (Ivrea, TO)",
+        "originalProvince": "",
         "lat": 45.451803,
         "lon": 7.89325
       }
@@ -7186,8 +7216,10 @@
     ],
     "locations": [
       {
-        "name": "Lanzo Toriese",
+        "name": "Lanzo Torinese",
         "province": "TO",
+        "originalName": "Lanzo Toriese",
+        "originalProvince": "TO",
         "lat": 45.27335,
         "lon": 7.477411
       }
@@ -8670,8 +8702,10 @@
     ],
     "locations": [
       {
-        "name": "CAselle Torinese",
+        "name": "Caselle Torinese",
         "province": "TO",
+        "originalName": "CAselle Torinese",
+        "originalProvince": "TO",
         "lat": 45.17749,
         "lon": 7.646367
       }
@@ -8721,8 +8755,10 @@
     ],
     "locations": [
       {
-        "name": "Pinero",
+        "name": "Pinerolo",
         "province": "TO",
+        "originalName": "Pinero",
+        "originalProvince": "TO",
         "lat": 44.887309,
         "lon": 7.331945
       }
@@ -8806,8 +8842,10 @@
     ],
     "locations": [
       {
-        "name": "Veverone",
+        "name": "Viverone",
         "province": "BI",
+        "originalName": "Veverone",
+        "originalProvince": "BI",
         "lat": 45.425553,
         "lon": 8.051215
       }
@@ -9744,8 +9782,10 @@
     "tags": [],
     "locations": [
       {
-        "name": "Cuorgné",
+        "name": "Cuorgnè",
         "province": "TO",
+        "originalName": "Cuorgné",
+        "originalProvince": "TO",
         "lat": 45.38972,
         "lon": 7.649817
       }
@@ -9772,8 +9812,10 @@
     "tags": [],
     "locations": [
       {
-        "name": "Cariglio",
+        "name": "Caraglio",
         "province": "CN",
+        "originalName": "Cariglio",
+        "originalProvince": "CN",
         "lat": 44.428441,
         "lon": 7.443749
       }
@@ -10802,8 +10844,10 @@
     "tags": [],
     "locations": [
       {
-        "name": "Pont Caavese",
+        "name": "Pont Canavese",
         "province": "TO",
+        "originalName": "Pont Caavese",
+        "originalProvince": "TO",
         "lat": 45.420527,
         "lon": 7.596855
       }
@@ -10936,8 +10980,10 @@
     "tags": [],
     "locations": [
       {
-        "name": "Testona (Moncalieri, TO)",
-        "province": "",
+        "name": "Testona",
+        "province": "TO",
+        "originalName": "Testona (Moncalieri, TO)",
+        "originalProvince": "",
         "lat": 44.997042,
         "lon": 7.71033
       }
@@ -11548,13 +11594,17 @@
     "locations": [
       {
         "name": "Langhe",
-        "province": "CN / AT",
+        "province": "AT / CN",
+        "originalName": "Langhe",
+        "originalProvince": "CN / AT",
         "lat": 44.497852,
         "lon": 7.97652
       },
       {
         "name": "Roero",
-        "province": "CN / AT",
+        "province": "AT / CN",
+        "originalName": "Roero",
+        "originalProvince": "CN / AT",
         "lat": 44.79585,
         "lon": 7.88694
       }
@@ -12250,8 +12300,10 @@
     ],
     "locations": [
       {
-        "name": "Val Maira",
+        "name": "Valle Maira",
         "province": "CN",
+        "originalName": "Val Maira",
+        "originalProvince": "CN",
         "lat": 44.49889,
         "lon": 7.168327
       }
@@ -12280,8 +12332,10 @@
     ],
     "locations": [
       {
-        "name": "Val Maira",
+        "name": "Valle Maira",
         "province": "CN",
+        "originalName": "Val Maira",
+        "originalProvince": "CN",
         "lat": 44.49889,
         "lon": 7.168327
       }
@@ -13531,7 +13585,9 @@
     "locations": [
       {
         "name": "Langhe",
-        "province": "CN / AT",
+        "province": "AT / CN",
+        "originalName": "Langhe",
+        "originalProvince": "CN / AT",
         "lat": 44.497852,
         "lon": 7.97652
       }
@@ -13951,7 +14007,9 @@
     "locations": [
       {
         "name": "Alta Langa",
-        "province": "CN / AT / AL",
+        "province": "AL / AT / CN",
+        "originalName": "Alta Langa",
+        "originalProvince": "CN / AT / AL",
         "lat": 44.424389,
         "lon": 8.202921
       }
@@ -14390,8 +14448,10 @@
     "tags": [],
     "locations": [
       {
-        "name": "Nieve",
+        "name": "Neive",
         "province": "CN",
+        "originalName": "Nieve",
+        "originalProvince": "CN",
         "lat": 44.72605,
         "lon": 8.115186
       }
@@ -15134,8 +15194,10 @@
     ],
     "locations": [
       {
-        "name": "Piaggio Valmara (Canobbio, VCO)",
+        "name": "Piaggio Valmara (Cannobio, VCO)",
         "province": "",
+        "originalName": "Piaggio Valmara (Canobbio, VCO)",
+        "originalProvince": "",
         "lat": 46.061808,
         "lon": 8.697639
       }

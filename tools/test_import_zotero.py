@@ -3,7 +3,52 @@
 import unittest
 import xml.etree.ElementTree as ET
 
-from import_zotero import NS, sbn_links
+from import_zotero import NS, sbn_links, normalize_locations
+
+
+class LocationTests(unittest.TestCase):
+    def test_typos_case_accents_and_duplicate_places(self):
+        records = [{"locations": [
+            {"name": " CAselle   Torinese ", "province": "TO"},
+            {"name": "Caselle Torinese", "province": "TO"},
+            {"name": "Cirié", "province": "TO"},
+            {"name": "Ciriè", "province": "TO"},
+        ]}]
+        cache = {"Caselle Torinese|TO": {"lat": 45.17, "lon": 7.64}}
+        normalize_locations(records, cache)
+        places = records[0]["locations"]
+        self.assertEqual([p["name"] for p in places], ["Caselle Torinese", "Ciriè"])
+        self.assertEqual(places[0]["originalName"], " CAselle   Torinese ")
+        self.assertEqual(places[0]["lat"], 45.17)
+
+    def test_province_order_and_missing_province(self):
+        records = [{"locations": [
+            {"name": "Monferrato", "province": "AT / AL"},
+            {"name": "Monferrato", "province": "AL / AT"},
+            {"name": "Testona (Moncalieri, TO)", "province": ""},
+            {"name": "Testona", "province": "TO"},
+        ]}]
+        normalize_locations(records, {})
+        self.assertEqual(len(records[0]["locations"]), 2)
+        self.assertEqual(records[0]["locations"][1]["province"], "TO")
+
+    def test_reference_coordinates_do_not_merge_distinct_places(self):
+        names = ["Pragelato", "Alta Val Chisone", "Novi Ligure", "Oltregiogo",
+                 "Bussolino Gassinese", "Gassino Torinese", "Coazze", "Coazze?"]
+        records = [{"locations": [{"name": n, "province": ""} for n in names]}]
+        normalize_locations(records, {})
+        self.assertEqual([p["name"] for p in records[0]["locations"]], names)
+
+    def test_legacy_coordinates_and_nonempty_province_conflicts_are_preserved(self):
+        records = [{"locations": [
+            {"name": "Forno Cnavese", "province": "TO"},
+            {"name": "Alba", "province": "AT"},
+            {"name": "Alba", "province": "CN"},
+        ]}]
+        normalize_locations(records, {"Forno Cnavese|TO": {"lat": 45.3, "lon": 7.5}})
+        self.assertEqual(records[0]["locations"][0]["name"], "Forno Canavese")
+        self.assertEqual(records[0]["locations"][0]["lat"], 45.3)
+        self.assertEqual(len(records[0]["locations"]), 3)
 
 
 class SbnLinksTests(unittest.TestCase):
