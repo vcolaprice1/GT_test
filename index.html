@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="styles.css?v=20261020-3" />
+    <link rel="stylesheet" href="styles.css?v=20261020-4" />
     <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script defer src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-    <script defer src="app.js?v=20261020-3"></script>
+    <script defer src="app.js?v=20261020-4"></script>
   </head>
   <body>
     <a class="skip-link" href="#catalogo">Vai al catalogo</a>
@@ -77,9 +77,8 @@
               <div class="field"><span id="publication-filter-label">LUOGHI DI PUBBLICAZIONE</span><details id="publication-filter" class="multi-filter"><summary aria-labelledby="publication-filter-label publication-filter-selection"><span id="publication-filter-selection">Tutti</span></summary><div class="multi-panel"><input type="search" placeholder="Cerca un luogo…" aria-label="Cerca tra i luoghi di pubblicazione" /><button type="button" class="clear-places">Deseleziona tutti</button><div class="multi-options" role="group" aria-labelledby="publication-filter-label"></div></div></details></div>
               <div class="field"><span id="location-filter-label">LOCALITÀ TRATTATE</span><details id="location-filter" class="multi-filter"><summary aria-labelledby="location-filter-label location-filter-selection"><span id="location-filter-selection">Tutte</span></summary><div class="multi-panel"><input type="search" placeholder="Cerca una località…" aria-label="Cerca tra le località trattate" /><button type="button" class="clear-places">Deseleziona tutte</button><div class="multi-options" role="group" aria-labelledby="location-filter-label"></div></div></details></div>
               <label class="field"><span>ANNO DI EDIZIONE</span><select id="year-filter"><option value="">Tutti</option></select></label>
-              <fieldset class="year-range"><legend>PERIODO DI PUBBLICAZIONE</legend><div class="year-range-fields"><label class="field"><span>DAL</span><select id="year-from" aria-describedby="year-range-help year-range-error"><option value="">Qualsiasi anno</option></select></label><label class="field"><span>AL</span><select id="year-to" aria-describedby="year-range-help year-range-error"><option value="">Qualsiasi anno</option></select></label></div><p id="year-range-help">Estremi inclusi. In alternativa all’anno singolo.</p><p id="year-range-error" role="alert" hidden>L’anno finale deve essere uguale o successivo all’anno iniziale.</p></fieldset>
+              <fieldset class="year-range"><legend>PERIODO DI PUBBLICAZIONE</legend><div class="year-range-fields"><label class="field"><span>DAL</span><select id="year-from" aria-describedby="year-range-error"><option value="">Qualsiasi anno</option></select></label><label class="field"><span>AL</span><select id="year-to" aria-describedby="year-range-error"><option value="">Qualsiasi anno</option></select></label></div><p id="year-range-error" role="alert" hidden>L’anno finale deve essere uguale o successivo all’anno iniziale.</p></fieldset>
             </div>
-            <p class="filter-help">Puoi scegliere più luoghi: basta che una delle scelte corrisponda. Luoghi di pubblicazione e località trattate si combinano tra loro.</p>
           </details>
         </div>
         <div class="results-toolbar"><span id="result-count" role="status">Caricamento…</span><button id="reset-filters" type="button"><span aria-hidden="true">↺</span> Azzera i filtri</button></div>

@@ -68,6 +68,12 @@ function setupFilters() {
   fillSelect("#title-filter", state.records.map((r) => r.title));
   setupPlaceFilter("#publication-filter", state.records.map((r) => r.publicationPlace));
   setupPlaceFilter("#location-filter", state.records.flatMap((r) => r.locations.map((p) => p.name)));
+  document.addEventListener("click", (event) => {
+    for (const selector of Object.keys(placeFilters)) {
+      const control = $(selector);
+      if (control.open && !control.contains(event.target)) control.open = false;
+    }
+  });
   const years = state.records.flatMap((r) => publicationYears(r));
   fillSelect("#year-filter", years.map(String));
   const rangeYears = years.length ? Array.from({ length: Math.max(...years) - Math.min(...years) + 1 }, (_, i) => String(Math.min(...years) + i)) : [];
@@ -372,7 +378,7 @@ async function start() {
   $("#more-results").addEventListener("click", () => { state.visible += 12; renderResults(); });
   try {
     // Revalidate the catalogue; a fresh script must not use a stale export.
-    const response = await fetch("data/catalogo.json?v=20261020-3", { cache: "no-cache" });
+    const response = await fetch("data/catalogo.json?v=20261020-4", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.records = await response.json();
     state.records.sort((a, b) => a.title.localeCompare(b.title, "it", { sensitivity: "base" }));
