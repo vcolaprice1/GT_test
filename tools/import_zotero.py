@@ -25,6 +25,7 @@ NS = {
     "vcard": "http://nwalsh.com/rdf/vCard#",
     "z": "http://www.zotero.org/namespaces/export#",
     "dcterms": "http://purl.org/dc/terms/",
+    "link": "http://purl.org/rss/1.0/modules/link/",
 }
 
 ALIASES = {
@@ -111,6 +112,34 @@ def people(node, group):
     return result
 
 
+def sbn_links(item, nodes_by_id):
+    """Read SBN URLs from the record and its explicitly linked web attachments."""
+    nodes = [item]
+    links = []
+    for ref in item.findall("link:link", NS):
+        resource = ref.get(f"{{{NS['rdf']}}}resource", "")
+        if resource in nodes_by_id:
+            nodes.append(nodes_by_id[resource])
+        else:
+            links.append(resource)
+    for node in nodes:
+        links.extend(
+            "".join(value.itertext()).strip()
+            for value in node.findall("dc:identifier/dcterms:URI/rdf:value", NS)
+        )
+        links.append(txt(node, "z:url"))
+    result = []
+    for url in links:
+        try:
+            parsed = urllib.parse.urlsplit(url)
+        except ValueError:
+            continue
+        if parsed.scheme in ("http", "https") and parsed.hostname in ("opac.sbn.it", "www.sbn.it", "sbn.it"):
+            if url not in result:
+                result.append(url)
+    return result
+
+
 def locations(raw):
     match = re.search(r"(?:location|localit[aà]|locantion)\s*:\s*([^\r\n]+)", raw, re.I)
     if not match:
@@ -185,6 +214,7 @@ def main():
     parser.add_argument("--geocode", action="store_true")
     args = parser.parse_args()
     root = ET.parse(args.rdf).getroot()
+    nodes_by_id = {item.get(f"{{{NS['rdf']}}}about", ""): item for item in root}
     DATA.mkdir(exist_ok=True)
     cache_file = DATA / "geocodes.json"
     cache = json.loads(cache_file.read_text(encoding="utf-8")) if cache_file.exists() else {}
@@ -243,6 +273,7 @@ def main():
             "tags": [" ".join("".join(x.itertext()).split()) for x in item.findall("dc:subject", NS)],
             "locations": locs,
             "notes": notes,
+            "sbnUrls": sbn_links(item, nodes_by_id),
             "extra": raw_extra,
             "pdf": "assets/cfp-inwood.pdf",
         }
@@ -276,6 +307,7 @@ def main():
     (DATA / "catalogo.json").write_text(json.dumps(records, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     mapped = sum(bool(any("lat" in loc for loc in r["locations"])) for r in records)
     print(f"Imported {len(records)} records, {sum(bool(r['notes']) for r in records)} with notes, {mapped} with map coordinates.")
+    print(f"{sum(bool(r['sbnUrls']) for r in records)} records with SBN catalogue links.")
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ const $ = (selector) => document.querySelector(selector);
 const norm = (value) => String(value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("it").trim();
 const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
 const unique = (values) => [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
-const selectors = ["#query", "#scope", "#author-filter", "#publisher-filter", "#title-filter", "#publication-filter", "#location-filter", "#period-filter"];
+const selectors = ["#query", "#scope", "#author-filter", "#publisher-filter", "#title-filter", "#publication-filter", "#location-filter", "#year-filter", "#period-filter"];
 
 function fillSelect(selector, values) {
   const select = $(selector);
@@ -21,6 +21,7 @@ function setupFilters() {
   fillSelect("#title-filter", state.records.map((r) => r.title));
   fillSelect("#publication-filter", state.records.map((r) => r.publicationPlace));
   fillSelect("#location-filter", state.records.flatMap((r) => r.locations.map((p) => p.name)));
+  fillSelect("#year-filter", state.records.filter((r) => r.year).map((r) => String(r.year)));
   fillSelect("#period-filter", state.records.map((r) => r.year && `${Math.floor(r.year / 10) * 10}–${Math.floor(r.year / 10) * 10 + 9}`));
   for (const selector of selectors) $(selector).addEventListener(selector === "#query" ? "input" : "change", () => { state.visible = 12; applyFilters(); });
   $("#reset-filters").addEventListener("click", () => {
@@ -38,7 +39,7 @@ function searchText(record, scope) {
     publisher: record.publisher,
     publicationPlace: record.publicationPlace,
     locations: record.locations.map((p) => `${p.name} ${p.province}`).join(" "),
-    tags: record.tags.join(" "),
+    year: record.date,
     notes: record.notes.join(" "),
   };
   return scope === "all" ? Object.values(fields).join(" ") : fields[scope] || "";
@@ -53,6 +54,7 @@ function matches(record) {
   if ($("#title-filter").value && record.title !== $("#title-filter").value) return false;
   if ($("#publication-filter").value && record.publicationPlace !== $("#publication-filter").value) return false;
   if ($("#location-filter").value && !record.locations.some((p) => p.name === $("#location-filter").value)) return false;
+  if ($("#year-filter").value && record.year !== Number($("#year-filter").value)) return false;
   if ($("#period-filter").value) {
     const start = Number($("#period-filter").value.slice(0, 4));
     if (!record.year || record.year < start || record.year > start + 9) return false;
@@ -94,12 +96,23 @@ function fact(label, value) {
   return value ? `<div class="detail-fact"><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>` : "";
 }
 
+function sbnCatalogueLinks(record) {
+  const urls = (record.sbnUrls || []).filter((value) => {
+    try {
+      const url = new URL(value);
+      return ["http:", "https:"].includes(url.protocol) && ["opac.sbn.it", "www.sbn.it", "sbn.it"].includes(url.hostname);
+    } catch (_) { return false; }
+  });
+  return urls.length ? `<div class="sbn-links">${urls.map((url, index) => `<a class="sbn-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Consulta nel catalogo SBN${urls.length > 1 ? ` · ${index + 1}` : ""} ↗</a>`).join("")}<p>Consulta la scheda e le biblioteche che possiedono il volume.</p></div>` : "";
+}
+
 function openDetail(record) {
   state.previousFocus = document.activeElement;
   const places = record.locations.map((p) => `${p.name}${p.province ? ` (${p.province})` : ""}`).join(", ");
   $("#detail-content").innerHTML = `<div class="detail-layout">
     <div class="detail-meta"><div class="detail-kicker">SCHEDA BIBLIOGRAFICA</div><h2 id="detail-title">${esc(record.title)}</h2>
-      <dl class="detail-facts">${fact("Autore", record.authors.join(", "))}${fact("Curatore", record.editors.join(", "))}${fact("Editore", record.publisher)}${fact("Luogo di edizione", record.publicationPlace)}${fact("Anno", record.date)}${fact("Località trattata", places)}${record.tags.length ? `<div class="detail-fact"><dt>Parole chiave</dt><dd class="detail-tag-list">${record.tags.map((tag) => `<span class="detail-tag">${esc(tag)}</span>`).join("")}</dd></div>` : ""}</dl>
+      <dl class="detail-facts">${fact("Autore", record.authors.join(", "))}${fact("Curatore", record.editors.join(", "))}${fact("Editore", record.publisher)}${fact("Luogo di edizione", record.publicationPlace)}${fact("Anno", record.date)}${fact("Località trattata", places)}</dl>
+      ${sbnCatalogueLinks(record)}
       <div class="detail-notes"><h3>Note</h3>${record.notes.length ? record.notes.map((note) => `<p>${esc(note)}</p>`).join("") : `<p>Non presenti nell’esportazione bibliografica attuale.</p>`}</div>
     </div>
     <div class="pdf-pane"><div class="pdf-heading"><h3>Documento associato</h3><span class="sample-badge">PDF DIMOSTRATIVO</span></div><p class="pdf-disclaimer">Il documento campione è temporaneamente associato a tutte le schede. Non è il testo della pubblicazione indicata.</p>

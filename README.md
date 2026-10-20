@@ -63,6 +63,10 @@ python tools/import_zotero.py "C:/percorso/nuova-esportazione.rdf" --geocode
 
 Lo script conserva in `data/geocodes.json` le coordinate già trovate: alle importazioni successive interroga OpenStreetMap Nominatim solo per nuove località, rispettando una pausa tra le richieste. Controlla l'output per eventuali località irrisolte. Il campo `Location:` o `Località:` in `Extra` indica il luogo trattato; il normale campo Zotero del luogo di pubblicazione resta separato.
 
+Il filtro **Anno di edizione** seleziona un anno preciso; **Periodo** seleziona un decennio. I filtri si combinano e il pulsante **Azzera i filtri** ripristina l'intero catalogo. I tag Zotero sono conservati nei dati come informazioni redazionali, ma non sono mostrati nelle schede né inclusi nella ricerca pubblica.
+
+I collegamenti SBN vengono estratti sia dal record bibliografico sia dagli allegati web che Zotero collega tramite `link:link`. Il campo `sbnUrls` contiene gli URL originali: 482 schede dell'esportazione corrente dispongono del pulsante **Consulta nel catalogo SBN**; 26 non hanno un collegamento esportato. Le note restano visibili e ricercabili. La sezione **Il progetto** contiene testi segnaposto lorem ipsum per obiettivi, metodo e fonti, da sostituire con quelli definitivi.
+
 Il catalogo corrente, ricavato da `Storie di paese Piemonte.rdf`, contiene 508 pubblicazioni; 208 hanno note Zotero testuali, mostrate in testo leggibile nella scheda e ricercabili. Tutte le 484 pubblicazioni che riportano una località trattata sono rappresentate sulla mappa; le altre 24 non hanno quel metadato nell'esportazione. Il confine del Piemonte è salvato in `data/piemonte.geojson` e proviene da OpenStreetMap/Nominatim. Il PDF in `assets/cfp-inwood.pdf` è un documento dimostrativo associato temporaneamente a tutte le schede. Per PDF specifici, aggiorna il percorso `pdf` in `data/catalogo.json` o estendi lo script di importazione con una mappatura stabile degli allegati.
 
 ## Crediti
