@@ -3,7 +3,41 @@
 import unittest
 import xml.etree.ElementTree as ET
 
-from import_zotero import NS, sbn_links, normalize_locations
+from import_zotero import NS, sbn_links, normalize_locations, normalize_publication_fields
+
+
+class PublicationFieldsTests(unittest.TestCase):
+    def test_verified_inversion_preserves_id_and_source_values(self):
+        record = {"id": "stable", "title": "Novara : pagine di storia",
+                  "publicationPlace": "1977", "date": "Novara", "year": None}
+        normalize_publication_fields(record)
+        self.assertEqual((record["publicationPlace"], record["date"], record["year"]),
+                         ("Novara", "1977", 1977))
+        self.assertEqual(record["originalPublicationPlace"], "1977")
+        self.assertEqual(record["originalDate"], "Novara")
+        self.assertEqual(record["id"], "stable")
+        normalized = dict(record)
+        normalize_publication_fields(record)
+        self.assertEqual(record, normalized)
+
+    def test_spacing_and_unknown_place_expansion(self):
+        for source, expected in [
+            ("Sant'  Albano Stura", "Sant'Albano Stura"),
+            ("Sant’ Albano Stura", "Sant'Albano Stura"),
+            ("S.l.", "S.l."),
+            ("Rocca de' Baldi", "Rocca de' Baldi"),
+        ]:
+            with self.subTest(source=source):
+                record = {"title": "Test", "publicationPlace": source, "date": "1987", "year": 1987}
+                normalize_publication_fields(record)
+                self.assertEqual(record["publicationPlace"], expected)
+                self.assertEqual(record["year"], 1987)
+
+    def test_no_unverified_date_place_swaps(self):
+        record = {"title": "Other book", "publicationPlace": "1977", "date": "Novara", "year": None}
+        original = dict(record)
+        normalize_publication_fields(record)
+        self.assertEqual(record, original)
 
 
 class LocationTests(unittest.TestCase):

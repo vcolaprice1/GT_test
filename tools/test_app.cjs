@@ -54,20 +54,21 @@ test("captions are removed and publication corrections reach filters and years",
   assert.ok(!html.includes("year-range-help"));
   assert.ok(!html.includes("Puoi scegliere più luoghi"));
   assert.ok(!html.includes("Estremi inclusi."));
-  const novara = records.find(r => r.id === "libro-a0b21905b9ab");
+  const novara = records.find(r => r.title === "Novara : pagine di storia");
   assert.equal(novara.publicationPlace, "Novara");
   assert.equal(novara.date, "1977");
   assert.equal(novara.year, 1977);
-  assert.ok(!records.some(r => r.publicationPlace === "1977" || r.publicationPlace === "S.l." || /Sant'\s+Albano/.test(r.publicationPlace)));
+  assert.ok(!records.some(r => r.publicationPlace === "1977" || /Sant'\s+Albano/.test(r.publicationPlace)));
   const { element, run } = harness();
   run("setPlaceFilter('#publication-filter', ['Novara'])");
   element("#year-filter").value = "1977";
   element("#year-filter").handlers.change();
-  assert.equal(run("state.filtered.some(r => r.id === 'libro-a0b21905b9ab')"), true);
+  assert.equal(run("state.filtered.some(r => r.title === 'Novara : pagine di storia')"), true);
 });
 test("every exact-year option filters the real catalogue and handles string years", () => {
   const { element, run } = harness();
   for (const { value } of element("#year-filter").options) {
+    if (value === "undated") continue;
     element("#year-filter").value = value;
     element("#year-filter").handlers.change();
     const expected = records.filter(r => {
@@ -83,6 +84,31 @@ test("every exact-year option filters the real catalogue and handles string year
   assert.equal(run("publicationYears({date: 'S.d.'}).length"), 0);
   assert.equal(run("publicationYears({date: '1978–1980'}).join(',')"), "1978,1979,1980");
   assert.equal(run("publicationYears({year:'1980'}).join(',')"), "1980");
+});
+
+test("abbreviations expand only in filters and open detail; undated is selectable", () => {
+  const { element, run } = harness();
+  const undated = records.filter(r => /^s\.d\.$/i.test(r.date));
+  assert.ok(undated.length > 0);
+  assert.ok(element("#year-filter").options.some(o => o.value === "undated" && o.textContent === "S.d. (senza data)"));
+  assert.ok(element("#publisher-filter").options.some(o => o.value === "S.n." && o.textContent === "S.n. (senza nome)"));
+  assert.ok(element("#publication-filter .multi-options").innerHTML.includes("S.l. (senza luogo di edizione)"));
+  element("#year-filter").value = "undated";
+  element("#year-filter").handlers.change();
+  assert.equal(run("state.filtered.length"), undated.length);
+  assert.equal(run("matches({...records[0],date:'',year:null})"), false);
+  run("openDetail({...records[0],publisher:'S.n.',publicationPlace:'S.l.',date:'S.d.',year:null})");
+  const detail = element("#detail-content").innerHTML;
+  for (const text of ["S.n. (senza nome)", "S.l. (senza luogo di edizione)", "S.d. (senza data)"]) assert.ok(detail.includes(text));
+  const card = run("card({...records[0],publisher:'S.n.',date:'S.d.',year:null},0)");
+  assert.ok(card.includes("S.n.") && card.includes("S.d."));
+  assert.ok(!card.includes("senza nome") && !card.includes("senza data"));
+  assert.ok(!records.some(r => /senza (luogo|nome|data)/.test([r.publisher,r.date,r.publicationPlace].join(" "))));
+  element("#year-from").value = "1970";
+  element("#year-from").handlers.change();
+  assert.equal(element("#year-filter").value, "");
+  element("#reset-filters").handlers.click();
+  assert.equal(run("state.filtered.length"), records.length);
 });
 
 test("year text search, range and reset work", () => {
