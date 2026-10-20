@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#183a37" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <meta name="description" content="Esplora la bibliografia delle storie locali del Piemonte per autore, titolo, editore e territorio." />
-    <title>Storie di paese Piemonte — Atlante bibliografico</title>
+    <title>Storie di paese Piemonte — Repertorio bibliografico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet" />
@@ -29,6 +29,7 @@
         <nav aria-label="Navigazione principale">
           <a href="#catalogo">Bibliografia</a>
           <a href="#mappa-section">Mappa</a>
+          <a href="#progetto">Il progetto</a>
           <a href="#segnalazioni">Segnalazioni</a>
         </nav>
       </div>
@@ -37,7 +38,7 @@
     <main id="inizio">
       <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-line"></span> ATLANTE BIBLIOGRAFICO DEL PIEMONTE</div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> REPERTORIO BIBLIOGRAFICO</div>
           <h1 id="hero-title">Storie di <em>paese</em></h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat, justo non facilisis tempor, sapien lorem posuere urna, vitae luctus nibh arcu sed dui.</p>
           <a class="primary-link" href="#catalogo">Esplora la bibliografia <span aria-hidden="true">↗</span></a>
@@ -62,12 +63,11 @@
       <section id="catalogo" class="catalog-section shell" aria-labelledby="catalog-title">
         <div class="section-heading">
           <div><div class="section-kicker">01 / LA RACCOLTA</div><h2 id="catalog-title">Esplora la bibliografia</h2></div>
-          <p>Una ricerca, molte strade per arrivare al libro che cerchi.</p>
         </div>
         <div class="search-panel">
           <div class="search-main">
             <label class="field search-field"><span>CERCA NEL CATALOGO</span><input id="query" type="search" placeholder="Un titolo, un nome, una parola chiave…" autocomplete="off" /></label>
-            <label class="field scope-field"><span>CERCA IN</span><select id="scope"><option value="all">Tutti i campi</option><option value="title">Titolo</option><option value="authors">Autore o curatore</option><option value="publisher">Editore</option><option value="publicationPlace">Luogo di pubblicazione</option><option value="locations">Località trattata</option><option value="tags">Parole chiave</option><option value="notes">Note</option></select></label>
+            <label class="field scope-field"><span>CERCA IN</span><select id="scope"><option value="all">Tutti i campi</option><option value="title">Titolo</option><option value="authors">Autore o curatore</option><option value="publisher">Editore</option><option value="publicationPlace">Luogo di pubblicazione</option><option value="locations">Località trattata</option><option value="year">Anno di edizione</option><option value="notes">Note</option></select></label>
           </div>
           <details class="advanced-filters" id="advanced-filters"><summary>Filtri dettagliati <span aria-hidden="true">⌄</span></summary>
             <div class="filter-grid">
@@ -76,25 +76,35 @@
               <label class="field"><span>TITOLO</span><select id="title-filter"><option value="">Tutti</option></select></label>
               <label class="field"><span>LUOGO DI PUBBLICAZIONE</span><select id="publication-filter"><option value="">Tutti</option></select></label>
               <label class="field"><span>LOCALITÀ TRATTATA</span><select id="location-filter"><option value="">Tutte</option></select></label>
+              <label class="field"><span>ANNO DI EDIZIONE</span><select id="year-filter"><option value="">Tutti</option></select></label>
               <label class="field"><span>PERIODO</span><select id="period-filter"><option value="">Tutti</option></select></label>
             </div>
           </details>
         </div>
-        <div class="results-toolbar"><span id="result-count" role="status">Caricamento…</span><button id="reset-filters" type="button">Azzera filtri <span aria-hidden="true">×</span></button></div>
+        <div class="results-toolbar"><span id="result-count" role="status">Caricamento…</span><button id="reset-filters" type="button"><span aria-hidden="true">↺</span> Azzera i filtri</button></div>
         <div id="results" class="results-grid" aria-live="polite"></div>
         <button id="more-results" type="button" class="more-button" hidden>Mostra altre pubblicazioni <span aria-hidden="true">↓</span></button>
       </section>
 
       <section id="mappa-section" class="map-section" aria-labelledby="map-title">
         <div class="shell">
-          <div class="section-heading light"><div><div class="section-kicker">02 / I LUOGHI</div><h2 id="map-title">Le storie sulla mappa</h2></div><p>Ogni segnaposto indica il luogo raccontato da una o più pubblicazioni. I gruppi si aprono ingrandendo la mappa.</p></div>
+          <div class="section-heading light"><div><div class="section-kicker">02 / I LUOGHI</div><h2 id="map-title">Le storie sulla mappa</h2></div><p>Ogni marcatore indica il luogo raccontato da una o più pubblicazioni. I gruppi si aprono ingrandendo la mappa.</p></div>
           <div class="map-wrap"><div id="map" role="application" aria-label="Mappa interattiva delle località trattate dai libri"></div><div class="map-legend"><span class="legend-dot"></span> Località singola <span class="legend-cluster"></span> Gruppo di località <span class="legend-divider"></span> <span id="map-count">—</span> pubblicazioni sulla mappa</div></div>
           <p class="map-footnote">La mappa usa le località presenti nel campo “Location/Località” dell’esportazione Zotero. Dove il nome indica una valle o un’area vasta, il punto ne rappresenta una località di riferimento.</p>
         </div>
       </section>
 
+      <section id="progetto" class="project-section shell" aria-labelledby="project-title">
+        <div class="section-heading"><div><div class="section-kicker">03 / IL REPERTORIO</div><h2 id="project-title">Il progetto</h2></div></div>
+        <div class="project-grid">
+          <article><span class="project-number" aria-hidden="true">01</span><h3>Obiettivi</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat, justo non facilisis tempor, sapien lorem posuere urna, vitae luctus nibh arcu sed dui.</p></article>
+          <article><span class="project-number" aria-hidden="true">02</span><h3>Metodo</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae tincidunt volutpat, augue urna consequat velit, at laoreet erat neque vitae lorem.</p></article>
+          <article><span class="project-number" aria-hidden="true">03</span><h3>Fonti</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla, sed posuere consectetur est.</p></article>
+        </div>
+      </section>
+
       <section id="segnalazioni" class="suggestion-section shell" aria-labelledby="suggestion-title">
-        <div class="suggestion-intro"><div class="section-kicker">03 / PARTECIPA</div><h2 id="suggestion-title">Manca una storia?</h2><p>Segnala una pubblicazione assente o una nuova uscita.</p><div class="suggestion-decoration" aria-hidden="true">“</div></div>
+        <div class="suggestion-intro"><div class="section-kicker">04 / PARTECIPA</div><h2 id="suggestion-title">Contribuisci anche tu</h2><p>Segnala una pubblicazione assente o una nuova uscita.</p><div class="suggestion-decoration" aria-hidden="true">“</div></div>
         <form id="suggestion-form" class="suggestion-form">
           <label class="field"><span>TITOLO DELLA PUBBLICAZIONE *</span><input name="title" required placeholder="Titolo del libro o dell'articolo" /></label>
           <div class="form-row"><label class="field"><span>AUTORE / CURATORE</span><input name="author" placeholder="Nome e cognome" /></label><label class="field"><span>ANNO</span><input name="year" inputmode="numeric" placeholder="Es. 2025" /></label></div>
