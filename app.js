@@ -5,18 +5,24 @@ const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "
 const unique = (values) => [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
 const selectors = ["#query", "#scope", "#author-filter", "#publisher-filter", "#title-filter", "#year-filter", "#year-from", "#year-to"];
 const placeFilters = { "#publication-filter": new Set(), "#location-filter": new Set() };
+const isUndated = (record) => /^\s*s\s*\.\s*d\s*\.?\s*$/i.test(record.date || "");
+function expandedLabel(value, field) {
+  const labels = { publicationPlace: ["sl", "S.l. (senza luogo di edizione)"], publisher: ["sn", "S.n. (senza nome)"], date: ["sd", "S.d. (senza data)"] };
+  const label = labels[field];
+  return label && String(value ?? "").toLowerCase().replace(/[.\s]/g, "") === label[0] ? label[1] : value;
+}
 
 function setPlaceFilter(selector, values) {
   placeFilters[selector] = new Set(values);
   const control = $(selector);
   for (const input of control.querySelectorAll('input[type="checkbox"]')) input.checked = placeFilters[selector].has(input.value);
   const selected = [...placeFilters[selector]];
-  control.querySelector("summary span").textContent = selected.length ? selected.join(", ") : (selector === "#location-filter" ? "Tutte" : "Tutti");
+  control.querySelector("summary span").textContent = selected.length ? selected.map(value => selector === "#publication-filter" ? expandedLabel(value, "publicationPlace") : value).join(", ") : (selector === "#location-filter" ? "Tutte" : "Tutti");
 }
 
 function setupPlaceFilter(selector, values) {
   const control = $(selector);
-  control.querySelector(".multi-options").innerHTML = unique(values).map(value => `<label class="place-option"><input type="checkbox" value="${esc(value)}" /><span>${esc(value)}</span></label>`).join("");
+  control.querySelector(".multi-options").innerHTML = unique(values).map(value => `<label class="place-option"><input type="checkbox" value="${esc(value)}" /><span>${esc(selector === "#publication-filter" ? expandedLabel(value, "publicationPlace") : value)}</span></label>`).join("");
   const search = control.querySelector('input[type="search"]');
   const filterOptions = () => {
     for (const label of control.querySelectorAll(".place-option")) label.hidden = !norm(label.textContent).includes(norm(search.value));
@@ -52,19 +58,19 @@ function publicationYears(record) {
   return fallback ? [Number(fallback[0])] : [];
 }
 
-function fillSelect(selector, values) {
+function fillSelect(selector, values, label = value => value) {
   const select = $(selector);
   for (const value of unique(values)) {
     const option = document.createElement("option");
     option.value = value;
-    option.textContent = value;
+    option.textContent = label(value);
     select.append(option);
   }
 }
 
 function setupFilters() {
   fillSelect("#author-filter", state.records.flatMap((r) => [...(r.authors || []), ...(r.editors || [])]));
-  fillSelect("#publisher-filter", state.records.map((r) => r.publisher));
+  fillSelect("#publisher-filter", state.records.map((r) => r.publisher), value => expandedLabel(value, "publisher"));
   fillSelect("#title-filter", state.records.map((r) => r.title));
   setupPlaceFilter("#publication-filter", state.records.map((r) => r.publicationPlace));
   setupPlaceFilter("#location-filter", state.records.flatMap((r) => r.locations.map((p) => p.name)));
@@ -76,6 +82,7 @@ function setupFilters() {
   });
   const years = state.records.flatMap((r) => publicationYears(r));
   fillSelect("#year-filter", years.map(String));
+  if (state.records.some(isUndated)) fillSelect("#year-filter", ["undated"], () => "S.d. (senza data)");
   const rangeYears = years.length ? Array.from({ length: Math.max(...years) - Math.min(...years) + 1 }, (_, i) => String(Math.min(...years) + i)) : [];
   fillSelect("#year-from", rangeYears);
   fillSelect("#year-to", rangeYears);
@@ -126,7 +133,9 @@ function matches(record) {
   if ($("#title-filter").value && record.title !== $("#title-filter").value) return false;
   if (placeFilters["#publication-filter"].size && !placeFilters["#publication-filter"].has(record.publicationPlace)) return false;
   if (placeFilters["#location-filter"].size && !record.locations.some((p) => placeFilters["#location-filter"].has(p.name))) return false;
-  if ($("#year-filter").value && !publicationYears(record).includes(Number($("#year-filter").value))) return false;
+  if ($("#year-filter").value === "undated") {
+    if (!isUndated(record)) return false;
+  } else if ($("#year-filter").value && !publicationYears(record).includes(Number($("#year-filter").value))) return false;
   if ($("#year-from").value || $("#year-to").value) {
     const from = $("#year-from").value ? Number($("#year-from").value) : -Infinity;
     const to = $("#year-to").value ? Number($("#year-to").value) : Infinity;
@@ -188,7 +197,7 @@ function openDetail(record) {
   const notes = (record.notes || []).filter(note => String(note).trim());
   $("#detail-content").innerHTML = `<div class="detail-layout">
     <div class="detail-meta"><div class="detail-kicker">SCHEDA BIBLIOGRAFICA</div><h2 id="detail-title">${esc(record.title)}</h2>
-      <dl class="detail-facts">${fact("Autore", record.authors.join(", "))}${fact("Curatore", record.editors.join(", "))}${fact("Editore", record.publisher)}${fact("Luogo di edizione", record.publicationPlace)}${fact("Anno", record.date)}${fact("Località trattata", places)}</dl>
+      <dl class="detail-facts">${fact("Autore", record.authors.join(", "))}${fact("Curatore", record.editors.join(", "))}${fact("Editore", expandedLabel(record.publisher, "publisher"))}${fact("Luogo di edizione", expandedLabel(record.publicationPlace, "publicationPlace"))}${fact("Anno", expandedLabel(record.date, "date"))}${fact("Località trattata", places)}</dl>
       ${sbnCatalogueLinks(record)}
       ${notes.length ? `<div class="detail-notes"><h3>Note</h3>${notes.map((note) => `<p>${esc(note)}</p>`).join("")}</div>` : ""}
     </div>
@@ -378,7 +387,7 @@ async function start() {
   $("#more-results").addEventListener("click", () => { state.visible += 12; renderResults(); });
   try {
     // Revalidate the catalogue; a fresh script must not use a stale export.
-    const response = await fetch("data/catalogo.json?v=20261020-4", { cache: "no-cache" });
+    const response = await fetch("data/catalogo.json?v=20261020-5", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.records = await response.json();
     state.records.sort((a, b) => a.title.localeCompare(b.title, "it", { sensitivity: "base" }));

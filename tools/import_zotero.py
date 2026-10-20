@@ -160,6 +160,28 @@ def normalize_locations(records, cache):
         record["locations"] = normalized
 
 
+def normalize_publication_fields(record):
+    """Apply verified editorial repairs after the source-based ID is assigned."""
+    original_place = record["publicationPlace"]
+    original_date = record["date"]
+    place = clean_place_name(original_place)
+    date = original_date
+    # Verified inversion in the supplied RDF: Novara : pagine di storia.
+    # Restrict the repair to this exact title and source value pair.
+    if (record["title"] == "Novara : pagine di storia"
+            and place == "1977" and date == "Novara"):
+        place, date = "Novara", "1977"
+    place = re.sub(r"\b(Sant')\s+", r"\1", place, flags=re.I)
+    if place != original_place:
+        record.setdefault("originalPublicationPlace", original_place)
+        record["publicationPlace"] = place
+    if date != original_date:
+        record.setdefault("originalDate", original_date)
+        record["date"] = date
+        year_match = re.search(r"\b(?:1[5-9]|20)\d{2}\b", date)
+        record["year"] = int(year_match.group()) if year_match else None
+
+
 def txt(node, path):
     child = node.find(path, NS)
     return " ".join("".join(child.itertext()).split()) if child is not None else ""
@@ -366,6 +388,7 @@ def main():
             "extra": raw_extra,
             "pdf": "assets/cfp-inwood.pdf",
         }
+        normalize_publication_fields(record)
         records.append(record)
         for loc in locs:
             key = f"{loc['name']}|{loc['province']}"

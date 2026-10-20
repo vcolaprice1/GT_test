@@ -6076,7 +6076,7 @@
       "Carlo Morra"
     ],
     "publisher": "Cassa rurale e artigiana",
-    "publicationPlace": "Sant' Albano Stura",
+    "publicationPlace": "Sant'Albano Stura",
     "date": "1987",
     "year": 1987,
     "tags": [
@@ -6096,7 +6096,8 @@
       "https://opac.sbn.it/risultati-ricerca-avanzata/-/opac-adv/index/1/ITICCUCFI0094602?fieldvalue%5B1%5D=Per+una+storia+di+Sant%27Albano+Stura%3A+Notizie%2C+documenti%2C+appunti+di+ricerca&fieldaccess%5B1%5D=Keywords%3A1016&fieldstruct%5B1%5D=ricerca.parole_tutte%3A4%3D6&struct%3A1001=ricerca.parole_almeno_una%3A%40or%40"
     ],
     "extra": "Location: Sant'Albano Stura (CN)",
-    "pdf": "assets/cfp-inwood.pdf"
+    "pdf": "assets/cfp-inwood.pdf",
+    "originalPublicationPlace": "Sant' Albano Stura"
   },
   {
     "id": "libro-dffae28153fa",
@@ -7505,17 +7506,17 @@
     "pdf": "assets/cfp-inwood.pdf"
   },
   {
-    "id": "libro-a0b21905b9ab",
+    "id": "libro-0023127fa160",
     "sourceRdfId": "item_1585",
     "title": "Novara : pagine di storia",
     "authors": [],
     "editors": [
       "Gaudenzio Barbè"
     ],
-    "publisher": "edizioni della Libreria Lazzareni",
-    "publicationPlace": "1977",
-    "date": "Novara",
-    "year": null,
+    "publisher": "Edizioni della Libreria Lazzareni",
+    "publicationPlace": "Novara",
+    "date": "1977",
+    "year": 1977,
     "tags": [
       "SP"
     ],
@@ -9830,17 +9831,17 @@
     "pdf": "assets/cfp-inwood.pdf"
   },
   {
-    "id": "libro-e46572f549ac",
+    "id": "libro-3c71a9260570",
     "sourceRdfId": "item_1843",
     "title": "Mango. Vicende storiche di un paese del Monferrato",
     "authors": [
       "Pio Battista"
     ],
     "editors": [],
-    "publisher": "Tipografia Boeris",
+    "publisher": "Società editrice San Paolo",
     "publicationPlace": "Alba",
-    "date": "1928",
-    "year": 1928,
+    "date": "1984",
+    "year": 1984,
     "tags": [
       "SP"
     ],
@@ -9853,7 +9854,7 @@
       }
     ],
     "notes": [
-      "Ristampa anastatica a cura della Società Editrice San Paolo"
+      "Ristampa anastatica in mille copie numerate dell'ed.: Alba: Tip. Boeris, 1928."
     ],
     "sbnUrls": [],
     "extra": "Location: Mango (CN)",
