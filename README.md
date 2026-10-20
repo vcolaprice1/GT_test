@@ -63,7 +63,18 @@ python tools/import_zotero.py "C:/percorso/nuova-esportazione.rdf" --geocode
 
 Lo script conserva in `data/geocodes.json` le coordinate già trovate: alle importazioni successive interroga OpenStreetMap Nominatim solo per nuove località, rispettando una pausa tra le richieste. Controlla l'output per eventuali località irrisolte. Il campo `Location:` o `Località:` in `Extra` indica il luogo trattato; il normale campo Zotero del luogo di pubblicazione resta separato.
 
-Il filtro **Anno di edizione** seleziona un anno preciso; **Periodo** seleziona un decennio. I filtri si combinano e il pulsante **Azzera i filtri** ripristina l'intero catalogo. I tag Zotero sono conservati nei dati come informazioni redazionali, ma non sono mostrati nelle schede né inclusi nella ricerca pubblica.
+Il filtro **Anno di edizione** seleziona un anno preciso; **Periodo** seleziona un decennio. Le opere con date su più anni (es. `1978-1980`) sono incluse per ogni anno compreso nell'intervallo, anche nella ricerca testuale per anno; schede e statistiche rispettano l'intero periodo. I filtri si combinano e il pulsante **Azzera i filtri** ripristina l'intero catalogo. I tag Zotero sono conservati nei dati come informazioni redazionali, ma non sono mostrati nelle schede né inclusi nella ricerca pubblica.
+
+I nomi delle località vengono normalizzati all'importazione: spazi, maiuscole/minuscole, ordine delle province e un elenco esplicito di refusi in `PLACE_NAMES` nello script. Le etichette cambiate conservano `originalName` e `originalProvince`; il campo `extra` mantiene il testo originale. Le coordinate esistenti sono riutilizzate. Frazioni, valli e aree storiche non vengono fuse con il comune usato come riferimento cartografico; nomi incerti e province discordanti richiedono revisione redazionale, non correzioni automatiche per somiglianza.
+
+CSS, JavaScript e catalogo hanno un parametro di versione comune (`v=20261020-2`) per evitare che il browser combini file di rilasci diversi. A ogni modifica del codice incrementare quel valore in `index.html` e `app.js`; il catalogo viene comunque rivalidato a ogni caricamento. Se dopo il push appare una vecchia scheda, attendere il completamento di GitHub Pages e ricaricare con **Ctrl + F5**.
+
+Test di regressione, dalla cartella del sito:
+
+```bash
+python -m unittest discover -s tools -p 'test_*.py'
+node --test tools/test_app.cjs
+```
 
 I collegamenti SBN vengono estratti sia dal record bibliografico sia dagli allegati web che Zotero collega tramite `link:link`. Il campo `sbnUrls` contiene gli URL originali: 482 schede dell'esportazione corrente dispongono del pulsante **Consulta nel catalogo SBN**; 26 non hanno un collegamento esportato. Le note restano visibili e ricercabili. La sezione **Il progetto** contiene testi segnaposto lorem ipsum per obiettivi, metodo e fonti, da sostituire con quelli definitivi.
 

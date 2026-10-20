@@ -5,11 +5,13 @@ Geocoding uses Nominatim only during import and keeps a local cache.
 """
 
 import argparse
+from collections import Counter, defaultdict
 import hashlib
 from html.parser import HTMLParser
 import json
 import re
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -69,6 +71,93 @@ ALIASES = {
     "Val Pellice, Valli d'Angrogna e di Luserna": "Torre Pellice",
     "Val Sessera e Val Strona (VC-VCO-BI)": "Valdilana",
 }
+
+# Editorial spelling corrections, not geocoding reference points.
+# Never map a valley, historical area or hamlet to its reference municipality.
+PLACE_NAMES = {
+    "CAselle Torinese": "Caselle Torinese",
+    "Belgiarate": "Belgirate",
+    "Caltignana": "Caltignaga",
+    "Cavallarmaggiore": "Cavallermaggiore",
+    "Cariglio": "Caraglio",
+    "Forno Cnavese": "Forno Canavese",
+    "Ivea": "Ivrea",
+    "Lanzo Toriese": "Lanzo Torinese",
+    "Nieve": "Neive",
+    "Novi Liguere": "Novi Ligure",
+    "Pacetto Torinese": "Pecetto Torinese",
+    "Pinero": "Pinerolo",
+    "Piosacco": "Piossasco",
+    "Pont Caavese": "Pont Canavese",
+    "Veverone": "Viverone",
+    "Cirié": "Ciriè",
+    "Cuorgné": "Cuorgnè",
+    "Val Maira": "Valle Maira",
+    "Testona (Moncalieri, TO)": "Testona",
+    "Serra d'Ivera (Ivrea, TO)": "Serra d'Ivrea (Ivrea, TO)",
+    "Piaggio Valmara (Canobbio, VCO)": "Piaggio Valmara (Cannobio, VCO)",
+    "Sale Delle Langhe": "Sale delle Langhe",
+    "Ferrere D'Asti": "Ferrere d'Asti",
+    "Rocca De' Baldi": "Rocca de' Baldi",
+}
+
+
+def clean_place_name(name):
+    return " ".join(unicodedata.normalize("NFC", name).replace("’", "'").split())
+
+
+def canonical_place_name(name):
+    name = clean_place_name(name)
+    corrections = {clean_place_name(k).casefold(): v for k, v in PLACE_NAMES.items()}
+    return corrections.get(name.casefold(), name)
+
+
+def canonical_province(province):
+    return " / ".join(sorted(set(p.strip().upper() for p in province.split("/") if p.strip())))
+
+
+def normalize_locations(records, cache):
+    """Normalize labels consistently while retaining source labels for review."""
+    labels = defaultdict(Counter)
+    provinces = defaultdict(set)
+    for record in records:
+        for loc in record["locations"]:
+            name = canonical_place_name(loc["name"])
+            labels[name.casefold()][name] += 1
+            if loc["province"]:
+                provinces[name.casefold()].add(canonical_province(loc["province"]))
+    preferred = {key: counts.most_common(1)[0][0] for key, counts in labels.items()}
+    coords_by_place = {}
+    # Prefer a correctly spelled cache entry over an old transcription variant.
+    for key, coords in sorted(cache.items(), key=lambda pair: (
+        pair[0].split("|")[0] != canonical_place_name(pair[0].split("|")[0]), pair[0]
+    )):
+        if coords:
+            name, province = key.rsplit("|", 1)
+            coords_by_place.setdefault(
+                (canonical_place_name(name).casefold(), canonical_province(province)), coords
+            )
+    for record in records:
+        normalized = []
+        seen = set()
+        for loc in record["locations"]:
+            old_name, old_province = loc["name"], loc["province"]
+            name_key = canonical_place_name(old_name).casefold()
+            loc["name"] = preferred[name_key]
+            loc["province"] = canonical_province(old_province)
+            if not loc["province"] and len(provinces[name_key]) == 1:
+                loc["province"] = next(iter(provinces[name_key]))
+            if loc["name"] != old_name or loc["province"] != old_province:
+                loc["originalName"] = old_name
+                loc["originalProvince"] = old_province
+            key = (name_key, loc["province"])
+            coords = coords_by_place.get(key) or cache.get(f"{old_name}|{old_province}")
+            if coords:
+                loc.update({"lat": coords["lat"], "lon": coords["lon"]})
+            if key not in seen:
+                normalized.append(loc)
+                seen.add(key)
+        record["locations"] = normalized
 
 
 def txt(node, path):
@@ -295,12 +384,7 @@ def main():
             cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             time.sleep(1.1)
 
-    for record in records:
-        for loc in record["locations"]:
-            key = f"{loc['name']}|{loc['province']}"
-            coords = cache.get(key)
-            if coords:
-                loc.update({"lat": coords["lat"], "lon": coords["lon"]})
+    normalize_locations(records, cache)
     DATA.mkdir(exist_ok=True)
     if len({record["id"] for record in records}) != len(records):
         raise ValueError("Two publications have identical stable IDs; review their title, date and creators")
