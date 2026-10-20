@@ -3,7 +3,42 @@ const $ = (selector) => document.querySelector(selector);
 const norm = (value) => String(value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("it").trim();
 const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
 const unique = (values) => [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
-const selectors = ["#query", "#scope", "#author-filter", "#publisher-filter", "#title-filter", "#publication-filter", "#location-filter", "#year-filter", "#period-filter"];
+const selectors = ["#query", "#scope", "#author-filter", "#publisher-filter", "#title-filter", "#year-filter", "#year-from", "#year-to"];
+const placeFilters = { "#publication-filter": new Set(), "#location-filter": new Set() };
+
+function setPlaceFilter(selector, values) {
+  placeFilters[selector] = new Set(values);
+  const control = $(selector);
+  for (const input of control.querySelectorAll('input[type="checkbox"]')) input.checked = placeFilters[selector].has(input.value);
+  const selected = [...placeFilters[selector]];
+  control.querySelector("summary span").textContent = selected.length ? selected.join(", ") : (selector === "#location-filter" ? "Tutte" : "Tutti");
+}
+
+function setupPlaceFilter(selector, values) {
+  const control = $(selector);
+  control.querySelector(".multi-options").innerHTML = unique(values).map(value => `<label class="place-option"><input type="checkbox" value="${esc(value)}" /><span>${esc(value)}</span></label>`).join("");
+  const search = control.querySelector('input[type="search"]');
+  const filterOptions = () => {
+    for (const label of control.querySelectorAll(".place-option")) label.hidden = !norm(label.textContent).includes(norm(search.value));
+  };
+  search.addEventListener("input", filterOptions);
+  control.addEventListener("change", (event) => {
+    if (!event.target.matches('input[type="checkbox"]')) return;
+    const selected = new Set(placeFilters[selector]);
+    if (event.target.checked) selected.add(event.target.value);
+    else selected.delete(event.target.value);
+    setPlaceFilter(selector, selected);
+    state.visible = 12;
+    applyFilters();
+  });
+  control.querySelector(".clear-places").addEventListener("click", () => {
+    setPlaceFilter(selector, []);
+    search.value = "";
+    filterOptions();
+    state.visible = 12;
+    applyFilters();
+  });
+}
 
 function publicationYears(record) {
   const date = String(record.date || record.year || "");
@@ -31,13 +66,31 @@ function setupFilters() {
   fillSelect("#author-filter", state.records.flatMap((r) => [...(r.authors || []), ...(r.editors || [])]));
   fillSelect("#publisher-filter", state.records.map((r) => r.publisher));
   fillSelect("#title-filter", state.records.map((r) => r.title));
-  fillSelect("#publication-filter", state.records.map((r) => r.publicationPlace));
-  fillSelect("#location-filter", state.records.flatMap((r) => r.locations.map((p) => p.name)));
-  fillSelect("#year-filter", state.records.flatMap((r) => publicationYears(r).map(String)));
-  fillSelect("#period-filter", state.records.flatMap((r) => publicationYears(r).map((year) => `${Math.floor(year / 10) * 10}–${Math.floor(year / 10) * 10 + 9}`)));
-  for (const selector of selectors) $(selector).addEventListener(selector === "#query" ? "input" : "change", () => { state.visible = 12; applyFilters(); });
+  setupPlaceFilter("#publication-filter", state.records.map((r) => r.publicationPlace));
+  setupPlaceFilter("#location-filter", state.records.flatMap((r) => r.locations.map((p) => p.name)));
+  const years = state.records.flatMap((r) => publicationYears(r));
+  fillSelect("#year-filter", years.map(String));
+  const rangeYears = years.length ? Array.from({ length: Math.max(...years) - Math.min(...years) + 1 }, (_, i) => String(Math.min(...years) + i)) : [];
+  fillSelect("#year-from", rangeYears);
+  fillSelect("#year-to", rangeYears);
+  for (const selector of selectors) $(selector).addEventListener(selector === "#query" ? "input" : "change", () => {
+    if (selector === "#year-filter" && $(selector).value) {
+      $("#year-from").value = "";
+      $("#year-to").value = "";
+    } else if (["#year-from", "#year-to"].includes(selector) && $(selector).value) {
+      $("#year-filter").value = "";
+    }
+    state.visible = 12;
+    applyFilters();
+  });
   $("#reset-filters").addEventListener("click", () => {
     for (const selector of selectors) $(selector).value = "";
+    for (const selector of Object.keys(placeFilters)) {
+      setPlaceFilter(selector, []);
+      $(selector).querySelector('input[type="search"]').value = "";
+      for (const label of $(selector).querySelectorAll(".place-option")) label.hidden = false;
+      $(selector).open = false;
+    }
     $("#scope").value = "all";
     state.visible = 12;
     applyFilters();
@@ -65,12 +118,13 @@ function matches(record) {
   if (author && ![...record.authors, ...record.editors].includes(author)) return false;
   if ($("#publisher-filter").value && record.publisher !== $("#publisher-filter").value) return false;
   if ($("#title-filter").value && record.title !== $("#title-filter").value) return false;
-  if ($("#publication-filter").value && record.publicationPlace !== $("#publication-filter").value) return false;
-  if ($("#location-filter").value && !record.locations.some((p) => p.name === $("#location-filter").value)) return false;
+  if (placeFilters["#publication-filter"].size && !placeFilters["#publication-filter"].has(record.publicationPlace)) return false;
+  if (placeFilters["#location-filter"].size && !record.locations.some((p) => placeFilters["#location-filter"].has(p.name))) return false;
   if ($("#year-filter").value && !publicationYears(record).includes(Number($("#year-filter").value))) return false;
-  if ($("#period-filter").value) {
-    const start = Number($("#period-filter").value.slice(0, 4));
-    if (!publicationYears(record).some((year) => year >= start && year <= start + 9)) return false;
+  if ($("#year-from").value || $("#year-to").value) {
+    const from = $("#year-from").value ? Number($("#year-from").value) : -Infinity;
+    const to = $("#year-to").value ? Number($("#year-to").value) : Infinity;
+    if (!publicationYears(record).some((year) => year >= from && year <= to)) return false;
   }
   return true;
 }
@@ -100,6 +154,9 @@ function renderResults() {
 }
 
 function applyFilters() {
+  const invalidRange = Boolean($("#year-from").value && $("#year-to").value && Number($("#year-from").value) > Number($("#year-to").value));
+  $("#year-range-error").hidden = !invalidRange;
+  $("#year-to").setAttribute("aria-invalid", String(invalidRange));
   state.filtered = state.records.filter(matches);
   renderResults();
   renderMapMarkers();
@@ -116,17 +173,18 @@ function sbnCatalogueLinks(record) {
       return ["http:", "https:"].includes(url.protocol) && ["opac.sbn.it", "www.sbn.it", "sbn.it"].includes(url.hostname);
     } catch (_) { return false; }
   });
-  return urls.length ? `<div class="sbn-links">${urls.map((url, index) => `<a class="sbn-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Consulta nel catalogo SBN${urls.length > 1 ? ` · ${index + 1}` : ""} ↗</a>`).join("")}<p>Consulta la scheda e le biblioteche che possiedono il volume.</p></div>` : "";
+  return urls.length ? `<div class="sbn-links">${urls.map((url, index) => `<a class="sbn-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Consulta nel catalogo SBN${urls.length > 1 ? ` · ${index + 1}` : ""} ↗</a>`).join("")}</div>` : "";
 }
 
 function openDetail(record) {
   state.previousFocus = document.activeElement;
   const places = record.locations.map((p) => `${p.name}${p.province ? ` (${p.province})` : ""}`).join(", ");
+  const notes = (record.notes || []).filter(note => String(note).trim());
   $("#detail-content").innerHTML = `<div class="detail-layout">
     <div class="detail-meta"><div class="detail-kicker">SCHEDA BIBLIOGRAFICA</div><h2 id="detail-title">${esc(record.title)}</h2>
       <dl class="detail-facts">${fact("Autore", record.authors.join(", "))}${fact("Curatore", record.editors.join(", "))}${fact("Editore", record.publisher)}${fact("Luogo di edizione", record.publicationPlace)}${fact("Anno", record.date)}${fact("Località trattata", places)}</dl>
       ${sbnCatalogueLinks(record)}
-      <div class="detail-notes"><h3>Note</h3>${record.notes.length ? record.notes.map((note) => `<p>${esc(note)}</p>`).join("") : `<p>Non presenti nell’esportazione bibliografica attuale.</p>`}</div>
+      ${notes.length ? `<div class="detail-notes"><h3>Note</h3>${notes.map((note) => `<p>${esc(note)}</p>`).join("")}</div>` : ""}
     </div>
     <div class="pdf-pane"><div class="pdf-heading"><h3>Documento associato</h3><span class="sample-badge">PDF DIMOSTRATIVO</span></div><p class="pdf-disclaimer">Il documento campione è temporaneamente associato a tutte le schede. Non è il testo della pubblicazione indicata.</p>
       <div class="pdf-cover-row"><img class="pdf-cover" src="assets/copertina-campione.png" alt="Prima pagina del PDF dimostrativo" /><div class="pdf-index"><div class="pdf-index-title">INDICE DEL DOCUMENTO</div><div class="pdf-pages"><button type="button" data-page="1" class="active" aria-label="Pagina 1">1</button><button type="button" data-page="2" aria-label="Pagina 2">2</button><button type="button" data-page="3" aria-label="Pagina 3">3</button></div></div></div>
@@ -216,7 +274,7 @@ function setupDetail() {
     }
     const placeButton = event.target.closest("[data-place]");
     if (placeButton) {
-      $("#location-filter").value = placeButton.dataset.place;
+      setPlaceFilter("#location-filter", [placeButton.dataset.place]);
       $("#advanced-filters").open = true;
       state.visible = 12;
       applyFilters();
@@ -314,7 +372,7 @@ async function start() {
   $("#more-results").addEventListener("click", () => { state.visible += 12; renderResults(); });
   try {
     // Revalidate the catalogue; a fresh script must not use a stale export.
-    const response = await fetch("data/catalogo.json?v=20261020-2", { cache: "no-cache" });
+    const response = await fetch("data/catalogo.json?v=20261020-3", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.records = await response.json();
     state.records.sort((a, b) => a.title.localeCompare(b.title, "it", { sensitivity: "base" }));
