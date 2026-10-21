@@ -88,4 +88,35 @@ Il catalogo corrente, ricavato da `Storie_di_paese_Piemonte_20_10_2026.rdf`, con
 
 ## Crediti
 
+## Aggiornamento automatico da Zotero
+
+Il workflow `.github/workflows/update-zotero.yml` legge la libreria di gruppo **6366329**, comprese note e allegati web SBN, senza modificare Zotero. La libreria è pubblica: non occorre una chiave API. Non inserire mai chiavi nel codice, in chat o nei commit. Revocare eventuali chiavi già condivise.
+
+Per attivarlo, caricare questi file nel repository e aprire **Settings → Pages → Build and deployment → Source → GitHub Actions**. Poi in **Actions → Aggiorna Zotero e pubblica → Run workflow** avviare la prima pubblicazione. Il workflow riparte anche a ogni push su `main` e ogni giorno alle **03:17 UTC** (05:17 in Italia con ora legale, 04:17 con ora solare). Gli orari GitHub possono subire ritardi; nei repository pubblici il programma può disattivarsi dopo 60 giorni di inattività e richiedere riattivazione.
+
+Da Git Bash:
+
+```bash
+cd /c/Users/vcola/Documents/ChatGPT/IN_Gen/storie-di-paese-piemonte
+git add .github/workflows/update-zotero.yml tools/import_zotero_api.py tools/test_zotero_api.py README.md .gitignore
+git commit -m "Collega Zotero e aggiorna automaticamente GitHub Pages"
+git push origin main
+```
+
+Le modifiche devono prima essere sincronizzate da Zotero desktop a zotero.org. Il sito pubblicato usa il catalogo appena scaricato; il JSON nel repository rimane il dataset di riferimento per i test e non viene aggiornato dal bot. Non servono commit automatici né permessi di scrittura sul repository. In caso di download incompleto, perdita totale delle note o riduzione delle schede superiore al 20% rispetto al riferimento, la pubblicazione si ferma e resta online l'ultima versione riuscita. Verificare l'errore nella scheda Actions.
+
+Le coordinate già validate vengono riutilizzate. Nuove località senza coordinate restano ricercabili nelle schede ma vengono segnalate nel log, senza aggiungere marcatori non verificati: aggiornare `data/geocodes.json` dopo verifica redazionale. Il PDF dimostrativo rimane invariato. Le sigle e le normalizzazioni continuano a usare le stesse regole del sito.
+
+Per verificare manualmente il download senza cambiare il dataset di riferimento:
+
+```bash
+python tools/import_zotero_api.py --output _site/data/catalogo.json
+```
+
+Solo se in futuro l'accesso pubblico viene disabilitato, creare una chiave limitata alla lettura del gruppo e delle note e salvarla in **Settings → Secrets and variables → Actions → New repository secret**, nome `ZOTERO_API_KEY`. Il workflow la legge dall'ambiente; non viene pubblicata tra i file del sito.
+
+Riferimenti: [API Zotero](https://www.zotero.org/support/dev/web_api/v3/basics), [workflow GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
+### Crediti dei dati
+
 Dati bibliografici: esportazione Zotero fornita dal progetto. Coordinate: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ottenute tramite Nominatim. Cartografia: OpenStreetMap. Librerie mappa: Leaflet e Leaflet.markercluster.
