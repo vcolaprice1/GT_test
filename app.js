@@ -329,9 +329,10 @@ function renderMapMarkers() {
     places.get(key).records.push(record);
   }
   for (const place of places.values()) {
-    const icon = L.divIcon({ html: '<span class="map-pin"><span class="map-pin-core"></span></span>', className: "map-pin-icon", iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12] });
+    const area = place.kind === "area";
+    const icon = L.divIcon({ html: `<span class="map-pin${area ? ' map-pin-area' : ''}"><span class="map-pin-core"></span></span>`, className: "map-pin-icon", iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12] });
     const marker = L.marker([place.lat, place.lon], { icon, title: place.name, alt: `Località trattata: ${place.name}` });
-    const heading = `${esc(place.name)}${place.province ? ` (${esc(place.province)})` : ""}`;
+    const heading = `${esc(place.name)}${place.province ? ` (${esc(place.province)})` : ""}${area ? '<small class="area-caption">Area geografica · punto di riferimento</small>' : ''}`;
     const links = place.records.slice(0, 4).map((r) => `<button type="button" data-record="${esc(r.id)}" style="display:block;width:100%;text-align:left;margin-top:5px">${esc(r.title)}</button>`).join("");
     marker.bindPopup(`<div class="place-popup"><strong>${heading}</strong><p>${place.records.length} ${place.records.length === 1 ? "pubblicazione" : "pubblicazioni"}</p>${links}<button type="button" class="popup-catalog-link" data-place="${esc(place.name)}">Vedi nel catalogo ↗</button></div>`);
     state.markers.addLayer(marker);
@@ -346,7 +347,7 @@ function setupSuggestions() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const values = Object.fromEntries(new FormData(form));
-    state.suggestion = `Segnalazione per Storie di paese Piemonte\n\nTitolo: ${values.title}\nAutore/curatore: ${values.author || "Non indicato"}\nAnno: ${values.year || "Non indicato"}\nLocalità trattata: ${values.place || "Non indicata"}\nDettagli: ${values.details || "Nessuno"}\n`;
+    state.suggestion = `Segnalazione per Storie di paese Piemonte\n\nTitolo: ${values.title}\nAutore/curatore: ${values.author}\nAnno: ${values.year || "Non indicato"}\nLocalità trattata: ${values.place || "Non indicata"}\nLink SBN: ${values.sbn || "Non indicato"}\nDettagli: ${values.details || "Nessuno"}\n`;
     $("#suggestion-output").hidden = false;
     const host = location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
     const repo = location.pathname.split("/").filter(Boolean)[0] || (host ? `${host[1]}.github.io` : "");
@@ -375,6 +376,7 @@ function renderStats() {
   const records = state.records;
   const places = unique(records.flatMap((r) => r.locations.map((p) => `${norm(p.name)}|${p.province}`)));
   $("#stat-records").textContent = records.length;
+  $("#stat-authors").textContent = new Set(records.flatMap(r => r.authors || []).map(name => norm(name).trim()).filter(Boolean)).size;
   $("#stat-places").textContent = places.length;
   $("#stat-publishers").textContent = unique(records.map((r) => r.publisher)).length;
   $("#stat-years").textContent = "1960–2000";
@@ -386,7 +388,7 @@ async function start() {
   $("#more-results").addEventListener("click", () => { state.visible += 12; renderResults(); });
   try {
     // Revalidate the catalogue; a fresh script must not use a stale export.
-    const response = await fetch("data/catalogo.json?v=20261028-1", { cache: "no-cache" });
+    const response = await fetch("data/catalogo.json?v=20261028-2", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.records = await response.json();
     state.records.sort((a, b) => a.title.localeCompare(b.title, "it", { sensitivity: "base" }));

@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="styles.css?v=20261028-1" />
+    <link rel="stylesheet" href="styles.css?v=20261028-2" />
     <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script defer src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-    <script defer src="app.js?v=20261028-1"></script>
+    <script defer src="app.js?v=20261028-2"></script>
   </head>
   <body>
     <a class="skip-link" href="#catalogo">Vai al catalogo</a>
@@ -55,6 +55,7 @@
           <div class="stat"><strong id="stat-records">—</strong><span>pubblicazioni</span></div>
           <div class="stat"><strong id="stat-places">—</strong><span>località censite</span></div>
           <div class="stat"><strong id="stat-publishers">—</strong><span>editori</span></div>
+          <div class="stat"><strong id="stat-authors">—</strong><span>autori</span></div>
           <div class="stat"><strong id="stat-years">1960–2000</strong><span>periodo di pubblicazione</span></div>
         </div>
       </section>
@@ -88,7 +89,7 @@
       <section id="mappa-section" class="map-section" aria-labelledby="map-title">
         <div class="shell">
           <div class="section-heading light"><div><div class="section-kicker">02 / I LUOGHI</div><h2 id="map-title">Le storie sulla mappa</h2></div><p>Ogni marcatore indica il luogo raccontato da una o più pubblicazioni. I gruppi si aprono ingrandendo la mappa.</p></div>
-          <div class="map-wrap"><div id="map" role="application" aria-label="Mappa interattiva delle località trattate dai libri"></div><div class="map-legend"><span class="legend-dot"></span> Località singola <span class="legend-cluster"></span> Gruppo di località <span class="legend-divider"></span> <span id="map-count">—</span> pubblicazioni sulla mappa</div></div>
+          <div class="map-wrap"><div id="map" role="application" aria-label="Mappa interattiva delle località trattate dai libri"></div><div class="map-legend"><span class="legend-dot"></span> Comune o frazione <span class="legend-area"></span> Area geografica <span class="legend-cluster"></span> Gruppo di località <span class="legend-divider"></span> <span id="map-count">—</span> pubblicazioni sulla mappa</div></div>
           <p class="map-footnote">La mappa usa le località presenti nel campo “Location/Località” dell’esportazione Zotero. Dove il nome indica una valle o un’area vasta, il punto ne rappresenta una località di riferimento.</p>
         </div>
       </section>
@@ -123,9 +124,10 @@
         </div>
         <form id="suggestion-form" class="suggestion-form">
           <label class="field"><span>TITOLO DELLA PUBBLICAZIONE *</span><input name="title" required placeholder="Titolo completo del libro" /></label>
-          <div class="form-row"><label class="field"><span>AUTORE / CURATORE</span><input name="author" placeholder="Nome e cognome" /></label><label class="field"><span>ANNO</span><input name="year" inputmode="numeric" placeholder="Es. 1985" /></label></div>
+          <div class="form-row"><label class="field"><span>AUTORE / CURATORE *</span><input name="author" required placeholder="Nome e cognome" /></label><label class="field"><span>ANNO</span><input name="year" inputmode="numeric" placeholder="Es. 1985" /></label></div>
           <label class="field"><span>LOCALITÀ TRATTATA</span><input name="place" placeholder="Comune, frazione o territorio" /></label>
-          <label class="field"><span>DETTAGLI AGGIUNTIVI</span><textarea name="details" rows="3" placeholder="Editore, link, ISBN o altre informazioni utili"></textarea></label>
+          <label class="field"><span>LINK AL CATALOGO SBN</span><input name="sbn" type="url" placeholder="https://opac.sbn.it/…" /></label>
+          <label class="field"><span>DETTAGLI AGGIUNTIVI</span><textarea name="details" rows="5" placeholder="Altre informazioni utili"></textarea></label>
           <button type="submit" class="submit-button">Prepara la segnalazione <span aria-hidden="true">↗</span></button>
           <div id="suggestion-output" class="suggestion-output" hidden><p id="suggestion-status" role="status"></p><a id="github-issue-link" target="_blank" rel="noopener noreferrer" hidden>Invia tramite GitHub Issues ↗</a><button id="download-suggestion" type="button">Scarica il testo</button></div>
         </form>

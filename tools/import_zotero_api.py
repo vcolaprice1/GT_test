@@ -10,6 +10,7 @@ import urllib.request
 from urllib.parse import urlsplit
 
 from import_zotero import DATA, locations, normalize_locations, normalize_publication_fields, note_text
+from map_locations import enrich
 
 GROUP = "6366329"
 
@@ -85,6 +86,7 @@ def convert(items, cache):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DATA / "catalogo.json")
+    parser.add_argument("--geo-cache", type=Path, default=DATA.parent / ".geocache" / "places.json")
     args = parser.parse_args()
     records = convert(download(), json.loads((DATA / "geocodes.json").read_text(encoding="utf-8")))
     previous = json.loads((DATA / "catalogo.json").read_text(encoding="utf-8"))
@@ -92,6 +94,7 @@ def main():
         raise ValueError("Catalogo vuoto o note non accessibili: pubblicazione interrotta.")
     if len(records) < len(previous) * 0.8:
         raise ValueError("Oltre il 20% delle schede mancante: verificare la libreria prima di pubblicare.")
+    enrich(records, args.geo_cache)
     missing = sorted({f"{loc['name']} ({loc['province']})" for r in records for loc in r["locations"] if "lat" not in loc})
     args.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = args.output.with_suffix(".tmp")

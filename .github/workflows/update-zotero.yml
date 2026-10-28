@@ -36,10 +36,21 @@ jobs:
           mkdir _site
           cp index.html app.js styles.css .nojekyll _site/
           cp -R assets data _site/
+      - uses: actions/cache/restore@v4
+        with:
+          path: .geocache
+          key: geocoding-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: geocoding-
       - name: Aggiorna dalla libreria Zotero
         env:
           ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
+          GEOCODER_URL: ${{ vars.GEOCODER_URL }}
         run: python tools/import_zotero_api.py --output _site/data/catalogo.json
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .geocache
+          key: geocoding-${{ github.run_id }}-${{ github.run_attempt }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
