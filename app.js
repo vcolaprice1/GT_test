@@ -374,11 +374,10 @@ function setupSuggestions() {
 function renderStats() {
   const records = state.records;
   const places = unique(records.flatMap((r) => r.locations.map((p) => `${norm(p.name)}|${p.province}`)));
-  const years = records.flatMap(publicationYears).sort((a, b) => a - b);
   $("#stat-records").textContent = records.length;
   $("#stat-places").textContent = places.length;
   $("#stat-publishers").textContent = unique(records.map((r) => r.publisher)).length;
-  $("#stat-years").textContent = years.length ? `${years[0]}–${years.at(-1)}` : "—";
+  $("#stat-years").textContent = "1960–2000";
 }
 
 async function start() {
@@ -387,7 +386,7 @@ async function start() {
   $("#more-results").addEventListener("click", () => { state.visible += 12; renderResults(); });
   try {
     // Revalidate the catalogue; a fresh script must not use a stale export.
-    const response = await fetch("data/catalogo.json?v=20261020-5", { cache: "no-cache" });
+    const response = await fetch("data/catalogo.json?v=20261028-1", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.records = await response.json();
     state.records.sort((a, b) => a.title.localeCompare(b.title, "it", { sensitivity: "base" }));
