@@ -18,7 +18,7 @@ def norm(text):
 
 def kind(name):
     value = name.casefold()
-    return "area" if value in AREAS or re.search(r"\b(val|valle|valli)\s|^serra d.ivrea", value) else "locality"
+    return "area" if value in AREAS or re.search(r"\b(val|valle|valli)\s|^serra d.ivrea|^lago\s", value) else "locality"
 
 
 def select_result(results, name, province):
@@ -31,7 +31,7 @@ def select_result(results, name, province):
             continue
         if result.get("addresstype") not in {"village", "town", "city", "hamlet", "municipality", "suburb", "quarter", "region", "valley", "county"} and result.get("type") != "administrative":
             continue
-        expected = [PROVINCES[p] for p in province.split("/") if p in PROVINCES]
+        expected = [PROVINCES[p.strip()] for p in province.split("/") if p.strip() in PROVINCES]
         if expected and not any(norm(p) in norm(result.get("display_name", "")) for p in expected):
             continue
         lat, lon = float(result["lat"]), float(result["lon"])
@@ -57,7 +57,7 @@ def enrich(records, cache_path):
                 requested += 1
                 query = place["name"] + ", " + PROVINCES.get(place["province"], "Piemonte") + ", Italia"
                 endpoint = os.environ.get("GEOCODER_URL") or "https://nominatim.openstreetmap.org/search"
-                url = endpoint + "?" + urllib.parse.urlencode({"q": query, "format": "jsonv2", "addressdetails": 1, "countrycodes": "it", "limit": 5})
+                url = endpoint + "?" + urllib.parse.urlencode({"q": query, "format": "jsonv2", "addressdetails": 1, "countrycodes": "it", "accept-language": "it", "limit": 5})
                 try:
                     request = urllib.request.Request(url, headers={"User-Agent": "StorieDiPaesePiemonte/1.0 (bibliographic catalogue)"})
                     with urllib.request.urlopen(request, timeout=30) as response:
